@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'android-gpx-parser'
+
+    publishedGroupId = 'io.ticofab.androidgpxparser'
+    libraryName = 'AndroidGpxParser'
+    artifact = 'android-gpx-parser'
+
+    libraryDescription = 'A simple XML parser for GPX files, built for Android.'
+
+    siteUrl = 'https://github.com/ticofab/android-gpx-parser'
+    gitUrl = 'https://github.com/ticofab/android-gpx-parser.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = 'ticofab'
+    developerName = 'Fabio Tiriticco'
+    developerEmail = 'fabio.europe@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
@@ -25,3 +49,7 @@ dependencies {
     // https://github.com/dlew/joda-time-android
     compile 'net.danlew:android.joda:2.8.2'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
