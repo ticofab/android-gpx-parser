@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidGpxParser</string>
+
+    <string name="hello_parser">Hello Android GPX Parser Sample App!\nCheck the logcat with tag GPXParserSampleActivity.</string>
+</resources>
