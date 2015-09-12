@@ -1,16 +1,16 @@
 package io.ticofab.androidgpxparser.parser.domain;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import org.joda.time.DateTime;
 
 public class TrackPoint {
-    private final LatLng mLatLng;
+    private final Double mLatitude;
+    private final Double mLongitude;
     private final Double mElevation;
     private final DateTime mTime;
 
     public TrackPoint(Builder builder) {
-        mLatLng = builder.mLatLng;
+        mLatitude = builder.mLatitude;
+        mLongitude = builder.mLongitude;
         mElevation = builder.mElevation;
         mTime = builder.mTime;
     }
@@ -19,8 +19,12 @@ public class TrackPoint {
         return mElevation;
     }
 
-    public LatLng getLatLng() {
-        return mLatLng;
+    public Double getLatitude() {
+        return mLatitude;
+    }
+
+    public Double getLongitude() {
+        return mLongitude;
     }
 
     public DateTime getTime() {
@@ -28,12 +32,18 @@ public class TrackPoint {
     }
 
     public static class Builder {
-        private LatLng mLatLng;
+        private Double mLatitude;
+        private Double mLongitude;
         private Double mElevation;
         private DateTime mTime;
 
-        public Builder setLatLng(LatLng latLng) {
-            mLatLng = latLng;
+        public Builder setLatitude(Double latitude) {
+            mLatitude = latitude;
+            return this;
+        }
+
+        public Builder setLongitude(Double longitude) {
+            mLongitude = longitude;
             return this;
         }
 

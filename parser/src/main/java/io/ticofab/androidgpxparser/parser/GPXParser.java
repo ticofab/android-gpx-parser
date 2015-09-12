@@ -1,20 +1,14 @@
 package io.ticofab.androidgpxparser.parser;
 
-import android.os.AsyncTask;
 import android.util.Xml;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +16,8 @@ import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
 import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
+import io.ticofab.androidgpxparser.parser.task.FetchAndParseGpxTask;
+import io.ticofab.androidgpxparser.parser.task.GpxFetchedAndParsed;
 
 public class GPXParser {
 
@@ -36,7 +32,7 @@ public class GPXParser {
 
     static final String ns = null;
 
-    public void parse(String gpxUrl, FetchAndParseGpxTask.GpxFetchedAndParsed listener) {
+    public void parse(String gpxUrl, GpxFetchedAndParsed listener) {
         new FetchAndParseGpxTask(gpxUrl, listener).execute();
     }
 
@@ -153,7 +149,8 @@ public class GPXParser {
         parser.require(XmlPullParser.END_TAG, ns, TAG_POINT);
         return new TrackPoint.Builder()
                 .setElevation(ele)
-                .setLatLng(new LatLng(lat, lng))
+                .setLatitude(lat)
+                .setLongitude(lng)
                 .setTime(time)
                 .build();
     }
@@ -195,41 +192,6 @@ public class GPXParser {
                     depth++;
                     break;
             }
-        }
-    }
-
-    public static class FetchAndParseGpxTask extends AsyncTask<Void, Void, Gpx> {
-
-        public interface GpxFetchedAndParsed {
-            void onGpxFetchedAndParsed(Gpx gpx);
-        }
-
-        final String mGpxUrl;
-        final GpxFetchedAndParsed mListener;
-        final GPXParser mParser = new GPXParser();
-
-        public FetchAndParseGpxTask(String gpxUrl, GpxFetchedAndParsed listener) {
-            mGpxUrl = gpxUrl;
-            mListener = listener;
-        }
-
-        @Override
-        protected Gpx doInBackground(Void... unused) {
-            Gpx parsedGpx = null;
-            try {
-                URL url = new URL(mGpxUrl);
-                HttpURLConnection client = (HttpURLConnection) url.openConnection();
-                InputStream in = new BufferedInputStream(client.getInputStream());
-                parsedGpx = mParser.parse(in);
-            } catch (IOException | XmlPullParserException e) {
-                e.printStackTrace();
-            }
-            return parsedGpx;
-        }
-
-        @Override
-        protected void onPostExecute(Gpx gpx) {
-            mListener.onGpxFetchedAndParsed(gpx);
         }
     }
 }

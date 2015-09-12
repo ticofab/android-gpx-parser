@@ -10,14 +10,13 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:0.1.1'
+compile 'io.ticofab.androidgpxparser:parser:0.1.3'
 ```
 
 Dependencies
 ------------
 
 * [Joda DateTime for Android][1]
-* Google Play Services, [Maps module][2] - only for the LatLng object. I'm considering removing it.
 
 Usage
 -----
@@ -48,7 +47,7 @@ if (gpx == null) {
 or you might want to fetch the Gpx track from a server and parse it. In that case, pass the track Url and a listener. Both fetching and parsing happen on a background thread.
 
 ```java
-mParser.parse("http://myserver.com/track.gpx", new GPXParser.FetchAndParseGpxTask.GpxFetchedAndParsed() {
+mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
             @Override
             public void onGpxFetchedAndParsed(Gpx gpx) {
                 if (gpx == null) {
