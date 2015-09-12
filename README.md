@@ -45,7 +45,7 @@ if (gpx == null) {
 }
 ```
 
-or you might want to fetch the Gpx track from a server and parse it. In that case, pass the track Url and a listener:
+or you might want to fetch the Gpx track from a server and parse it. In that case, pass the track Url and a listener. Both fetching and parsing happen on a background thread.
 
 ```java
 mParser.parse("http://myserver.com/track.gpx", new GPXParser.FetchAndParseGpxTask.GpxFetchedAndParsed() {
