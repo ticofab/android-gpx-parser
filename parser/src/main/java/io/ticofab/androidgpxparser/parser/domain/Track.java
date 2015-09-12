@@ -1,12 +1,14 @@
 package io.ticofab.androidgpxparser.parser.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Track {
     private final List<TrackSegment> mTrackSegments;
 
     public Track(Builder builder) {
-        mTrackSegments = builder.mTrackSegments;
+        mTrackSegments = Collections.unmodifiableList(new ArrayList<>(builder.mTrackSegments));
     }
 
     public List<TrackSegment> getTrackSegments() {
