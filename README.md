@@ -37,7 +37,7 @@ try {
 } catch (IOException | XmlPullParserException e) {
     e.printStackTrace();
 }
-if (gpx == null) {
+if (parsedGpx == null) {
     // error parsing track
 } else {
     // do something with the parsed track
