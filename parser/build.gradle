@@ -6,14 +6,14 @@ ext {
 
     publishedGroupId = 'io.ticofab.androidgpxparser'
     libraryName = 'AndroidGpxParser'
-    artifact = 'android-gpx-parser'
+    artifact = 'parser'
 
     libraryDescription = 'A simple XML parser for GPX files, built for Android.'
 
     siteUrl = 'https://github.com/ticofab/android-gpx-parser'
     gitUrl = 'https://github.com/ticofab/android-gpx-parser.git'
 
-    libraryVersion = '0.1.0'
+    libraryVersion = '0.1.1'
 
     developerId = 'ticofab'
     developerName = 'Fabio Tiriticco'
