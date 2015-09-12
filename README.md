@@ -13,15 +13,6 @@ Grab via Gradle:
 compile 'io.ticofab.androidgpxparser:parser:0.1.1'
 ```
 
-or Maven:
-```xml
-<dependency>
-  <groupId>io.ticofab.androidgpxparser</groupId>
-  <artifactId>parser</artifactId>
-  <version>0.1.1</version>
-</dependency>
-```
-
 Dependencies
 ------------
 
