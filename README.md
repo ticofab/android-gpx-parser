@@ -16,8 +16,8 @@ compile 'io.ticofab.androidgpxparser:parser:0.1.1'
 Dependencies
 ------------
 
-[Joda DateTime for Android][1]
-Google Play Services, [Maps module][2] - only for the LatLng object. I'm considering removing it.
+* [Joda DateTime for Android][1]
+* Google Play Services, [Maps module][2] - only for the LatLng object. I'm considering removing it.
 
 Usage
 -----
@@ -31,11 +31,17 @@ GPXParser mParser = new GPXParser(); // consider injection
 Then there are two options: given an InputStream,
 
 ```java
+Gpx parsedGpx = null;
 try {
     InputStream in = getAssets().open("test.gpx");
     parsedGpx = mParser.parse(in);
 } catch (IOException | XmlPullParserException e) {
     e.printStackTrace();
+}
+if (gpx == null) {
+    // error parsing track
+} else {
+    // do something with the parsed track
 }
 ```
 
@@ -57,7 +63,7 @@ mParser.parse("http://myserver.com/track.gpx", new GPXParser.FetchAndParseGpxTas
 License
 --------
 
-    Copyright 2015 Fabio Tiriticco
+    Copyright 2015 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
