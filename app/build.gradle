@@ -9,7 +9,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
-        versionName "0.1.0"
+        versionName "0.1.3"
     }
     buildTypes {
         release {
@@ -26,5 +26,5 @@ dependencies {
     // You should use the commented out line below in your application.
     // We depend on the source directly here so that development is easier.
     compile project(':parser')
-    //compile 'io.ticofab....:0.1.0'
+    //compile 'io.ticofab.androidgpxparser:parser:0.1.3'
 }
