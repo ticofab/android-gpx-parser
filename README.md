@@ -4,7 +4,7 @@ Android GPX Parser
 A library to parse XML Gpx files, built for Android.
 Far from complete, pull requests are welcome.
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--gpx--parser-green.svg?style=flat)](https://android-arsenal.com/details/1/2499)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--gpx--parser-green.svg?style=flat)](https://android-arsenal.com/details/1/2500)
 
 Download
 --------
