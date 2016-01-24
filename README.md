@@ -2,7 +2,7 @@ Android GPX Parser
 =======
 
 A library to parse XML Gpx files, built for Android.
-Far from complete, pull requests are welcome.
+Far from complete - pull requests are welcome!
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--gpx--parser-green.svg?style=flat)](https://android-arsenal.com/details/1/2500)
 
@@ -12,7 +12,7 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:0.1.3'
+compile 'io.ticofab.androidgpxparser:parser:0.1.4'
 ```
 
 Dependencies
