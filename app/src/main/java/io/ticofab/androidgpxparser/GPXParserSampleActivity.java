@@ -20,6 +20,7 @@ public class GPXParserSampleActivity extends AppCompatActivity {
 
     static final String TAG = GPXParserSampleActivity.class.getSimpleName();
 
+    // consider injection with, eg. Dagger2
     GPXParser mParser = new GPXParser();
 
     @Override
@@ -36,6 +37,7 @@ public class GPXParserSampleActivity extends AppCompatActivity {
         }
 
         if (parsedGpx != null) {
+            // log stuff
             List<Track> tracks = parsedGpx.getTracks();
             for (int i = 0; i < tracks.size(); i++) {
                 Track track = tracks.get(i);
