@@ -8,6 +8,8 @@ public class ParserApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // init joda date time
         JodaTimeAndroid.init(this);
     }
 }
