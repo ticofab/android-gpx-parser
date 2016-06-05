@@ -12,7 +12,7 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:0.1.4'
+compile 'io.ticofab.androidgpxparser:parser:0.1.5'
 ```
 
 Dependencies
@@ -79,4 +79,3 @@ License
     limitations under the License.
 
 [1]: https://github.com/dlew/joda-time-android
-[2]: https://developers.google.com/android/guides/setup
