@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 0.1.5 *(2016-06-05)*
+----------------------------
+
+ * Bumped plugins
+ * Fix for uninitialized Joda Time
+
+
 Version 0.1.4 *(2016-24-01)*
 ----------------------------
 
