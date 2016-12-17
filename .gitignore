@@ -1,8 +1,6 @@
 # built application files
 build
 *.apk
-*.ap_
-app/app.iml
 *.iml
 
 # files for the dex VM
@@ -27,13 +25,12 @@ proguard/
 
 # Intellij project files
 *.iws
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/libraries
 .idea/*
 
 # Gradle directory
 .gradle
+
+gradle/wrapper/gradle-wrapper.properties
 
 # OS
 .DS_Store
