@@ -16,7 +16,7 @@ import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
 import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
-import io.ticofab.androidgpxparser.parser.task.FetchAndParseGpxTask;
+import io.ticofab.androidgpxparser.parser.task.FetchAndParseGPXTask;
 import io.ticofab.androidgpxparser.parser.task.GpxFetchedAndParsed;
 
 public class GPXParser {
@@ -33,7 +33,7 @@ public class GPXParser {
     static final String ns = null;
 
     public void parse(String gpxUrl, GpxFetchedAndParsed listener) {
-        new FetchAndParseGpxTask(gpxUrl, listener).execute();
+        new FetchAndParseGPXTask(gpxUrl, listener).execute();
     }
 
     public Gpx parse(InputStream in) throws XmlPullParserException, IOException {
