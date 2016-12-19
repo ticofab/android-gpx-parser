@@ -1,10 +1,2 @@
 <manifest
-    package="io.ticofab.androidgpxparser.parser"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application
-        android:name=".application.ParserApplication"
-        android:allowBackup="true"
-        android:label="@string/app_name"/>
-
-</manifest>
+    package="io.ticofab.androidgpxparser.parser"/>

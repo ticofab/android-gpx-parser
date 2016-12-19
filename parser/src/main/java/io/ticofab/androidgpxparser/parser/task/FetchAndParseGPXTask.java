@@ -13,13 +13,13 @@ import java.net.URL;
 import io.ticofab.androidgpxparser.parser.GPXParser;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 
-public class FetchAndParseGpxTask extends AsyncTask<Void, Void, Gpx> {
+public class FetchAndParseGPXTask extends AsyncTask<Void, Void, Gpx> {
 
     final String mGpxUrl;
     final GpxFetchedAndParsed mListener;
     final GPXParser mParser = new GPXParser();
 
-    public FetchAndParseGpxTask(String gpxUrl, GpxFetchedAndParsed listener) {
+    public FetchAndParseGPXTask(String gpxUrl, GpxFetchedAndParsed listener) {
         mGpxUrl = gpxUrl;
         mListener = listener;
     }
