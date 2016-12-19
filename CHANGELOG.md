@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 0.1.6 *(2016-19-12)*
+----------------------------
+
+ * Fixed [#2](https://github.com/ticofab/android-gpx-parser/issues/2) and [#3](https://github.com/ticofab/android-gpx-parser/issues/3) - thanks [StuStirling](https://github.com/StuStirling)!
+ * Bumped plugins & dependencies
+
 Version 0.1.5 *(2016-06-05)*
 ----------------------------
 
