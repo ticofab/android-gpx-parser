@@ -12,7 +12,7 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:0.1.5'
+compile 'io.ticofab.androidgpxparser:parser:0.1.6'
 ```
 
 Dependencies
@@ -64,7 +64,7 @@ mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
 License
 --------
 
-    Copyright 2015 Fabio Tiriticco - Fabway
+    Copyright 2015 - 2016 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

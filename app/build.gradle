@@ -26,5 +26,5 @@ dependencies {
     // You should use the commented out line below in your application.
     // We depend on the source directly here so that development is easier.
     compile project(':parser')
-    //compile 'io.ticofab.androidgpxparser:parser:0.1.5'
+    //compile 'io.ticofab.androidgpxparser:parser:0.1.6'
 }
