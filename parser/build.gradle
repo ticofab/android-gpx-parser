@@ -45,7 +45,7 @@ android {
 dependencies {
     // JodaTime for Android
     // https://github.com/dlew/joda-time-android
-    compile 'net.danlew:android.joda:2.9.3.1'
+    compile 'net.danlew:android.joda:2.9.5.1'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
