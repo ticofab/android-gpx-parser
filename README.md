@@ -37,6 +37,7 @@ try {
     InputStream in = getAssets().open("test.gpx");
     parsedGpx = mParser.parse(in);
 } catch (IOException | XmlPullParserException e) {
+    // do something with this exception
     e.printStackTrace();
 }
 if (parsedGpx == null) {
@@ -60,6 +61,11 @@ mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
             }
         });
 ```
+
+Contribute
+----------
+
+Contributions are welcome! Please check the [issues](https://github.com/ticofab/android-gpx-parser/issues) and open a pull request when done: you will have made the world a better place.
 
 License
 --------

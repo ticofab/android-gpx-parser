@@ -7,7 +7,7 @@ import java.util.List;
 public class TrackSegment {
     private final List<TrackPoint> mTrackPoints;
 
-    public TrackSegment(Builder builder) {
+    private TrackSegment(Builder builder) {
         mTrackPoints = Collections.unmodifiableList(new ArrayList<>(builder.mTrackPoints));
     }
 

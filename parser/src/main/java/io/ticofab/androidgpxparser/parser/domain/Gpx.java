@@ -7,7 +7,7 @@ import java.util.List;
 public class Gpx {
     private final List<Track> mTracks;
 
-    public Gpx(Builder builder) {
+    private Gpx(Builder builder) {
         mTracks = Collections.unmodifiableList(new ArrayList<>(builder.mTracks));
     }
 

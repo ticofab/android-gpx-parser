@@ -8,7 +8,7 @@ public class TrackPoint {
     private final Double mElevation;
     private final DateTime mTime;
 
-    public TrackPoint(Builder builder) {
+    private TrackPoint(Builder builder) {
         mLatitude = builder.mLatitude;
         mLongitude = builder.mLongitude;
         mElevation = builder.mElevation;
