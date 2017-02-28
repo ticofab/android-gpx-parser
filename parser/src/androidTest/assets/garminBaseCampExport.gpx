@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wptx1="http://www.garmin.com/xmlschemas/WaypointExtension/v1" xmlns:gpxtrx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:trp="http://www.garmin.com/xmlschemas/TripExtensions/v1" xmlns:adv="http://www.garmin.com/xmlschemas/AdventuresExtensions/v1" xmlns:prs="http://www.garmin.com/xmlschemas/PressureExtension/v1" xmlns:tmd="http://www.garmin.com/xmlschemas/TripMetaDataExtensions/v1" xmlns:vptm="http://www.garmin.com/xmlschemas/ViaPointTransportationModeExtensions/v1" xmlns:ctx="http://www.garmin.com/xmlschemas/CreationTimeExtension/v1" xmlns:gpxacc="http://www.garmin.com/xmlschemas/AccelerationExtension/v1" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:vidx1="http://www.garmin.com/xmlschemas/VideoExtension/v1" creator="Garmin Desktop App" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/WaypointExtension/v1 http://www8.garmin.com/xmlschemas/WaypointExtensionv1.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www8.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/ActivityExtension/v1 http://www8.garmin.com/xmlschemas/ActivityExtensionv1.xsd http://www.garmin.com/xmlschemas/AdventuresExtensions/v1 http://www8.garmin.com/xmlschemas/AdventuresExtensionv1.xsd http://www.garmin.com/xmlschemas/PressureExtension/v1 http://www.garmin.com/xmlschemas/PressureExtensionv1.xsd http://www.garmin.com/xmlschemas/TripExtensions/v1 http://www.garmin.com/xmlschemas/TripExtensionsv1.xsd http://www.garmin.com/xmlschemas/TripMetaDataExtensions/v1 http://www.garmin.com/xmlschemas/TripMetaDataExtensionsv1.xsd http://www.garmin.com/xmlschemas/ViaPointTransportationModeExtensions/v1 http://www.garmin.com/xmlschemas/ViaPointTransportationModeExtensionsv1.xsd http://www.garmin.com/xmlschemas/CreationTimeExtension/v1 http://www.garmin.com/xmlschemas/CreationTimeExtensionsv1.xsd http://www.garmin.com/xmlschemas/AccelerationExtension/v1 http://www.garmin.com/xmlschemas/AccelerationExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.garmin.com/xmlschemas/VideoExtension/v1 http://www.garmin.com/xmlschemas/VideoExtensionv1.xsd">
+
+  <metadata>
+    <link href="http://www.garmin.com">
+      <text>Garmin International</text>
+    </link>
+    <time>2017-02-24T17:30:05Z</time>
+    <bounds maxlat="48.526611328125" maxlon="12.14813232421875" minlat="48.2025146484375" minlon="11.595740597695112"/>
+  </metadata>
+
+  <wpt lat="48.379919975996017" lon="11.775565277785063">
+    <time>2017-02-24T17:29:36Z</time>
+    <name>A923</name>
+    <cmt> A92</cmt>
+    <desc> A92</desc>
+    <sym>Flag, Blue</sym>
+    <type>user</type>
+    <extensions>
+      <gpxx:WaypointExtension>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+      <wptx1:WaypointExtension>
+        <wptx1:DisplayMode>SymbolAndName</wptx1:DisplayMode>
+      </wptx1:WaypointExtension>
+      <ctx:CreationTimeExtension>
+        <ctx:CreationTime>2017-02-24T17:29:36Z</ctx:CreationTime>
+      </ctx:CreationTimeExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="48.225033553317189" lon="11.595740597695112">
+    <time>2017-02-24T17:29:49Z</time>
+    <name>A99 und  13</name>
+    <cmt> A99 und  13</cmt>
+    <desc> A99 und  13</desc>
+    <sym>Flag, Blue</sym>
+    <type>user</type>
+    <extensions>
+      <gpxx:WaypointExtension>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+      <wptx1:WaypointExtension>
+        <wptx1:DisplayMode>SymbolAndName</wptx1:DisplayMode>
+      </wptx1:WaypointExtension>
+      <ctx:CreationTimeExtension>
+        <ctx:CreationTime>2017-02-24T17:29:49Z</ctx:CreationTime>
+      </ctx:CreationTimeExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="48.317163158208132" lon="11.952232327312231">
+    <time>2017-02-24T17:29:42Z</time>
+    <name>Erding Ab</name>
+    <cmt>Erding Ab</cmt>
+    <desc>Erding Ab</desc>
+    <sym>Airport</sym>
+    <type>user</type>
+    <extensions>
+      <gpxx:WaypointExtension>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+      <wptx1:WaypointExtension>
+        <wptx1:DisplayMode>SymbolAndName</wptx1:DisplayMode>
+      </wptx1:WaypointExtension>
+      <ctx:CreationTimeExtension>
+        <ctx:CreationTime>2017-02-24T17:29:42Z</ctx:CreationTime>
+      </ctx:CreationTimeExtension>
+    </extensions>
+  </wpt>
+
+  <rte>
+    <name>A92 und  A9 bis A99 und  388 und Straße</name>
+    <extensions>
+      <gpxx:RouteExtension>
+        <gpxx:IsAutoNamed>true</gpxx:IsAutoNamed>
+        <gpxx:DisplayColor>Magenta</gpxx:DisplayColor>
+      </gpxx:RouteExtension>
+      <trp:Trip>
+        <trp:TransportationMode>Bicycling</trp:TransportationMode>
+      </trp:Trip>
+    </extensions>
+    <rtept lat="48.3123779296875" lon="11.62353515625">
+      <time>2017-02-24T17:26:27Z</time>
+      <name>A92 und  A9</name>
+      <cmt> A92 und  A9</cmt>
+      <desc> A92 und  A9</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ViaPoint>
+          <trp:CalculationMode>FasterTime</trp:CalculationMode>
+          <trp:ElevationMode>Standard</trp:ElevationMode>
+        </trp:ViaPoint>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>00004ACE7C002D00D4220F220820005B0044</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+    <rtept lat="48.331158254295588" lon="11.708751367405057">
+      <time>2017-02-24T17:26:30Z</time>
+      <name>A92</name>
+      <cmt> A92</cmt>
+      <desc> A92</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ShapingPoint/>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>01004ACE7C002D00D4220D2208006B5E8353</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+    <rtept lat="48.417404601350427" lon="11.808869177475572">
+      <time>2017-02-24T17:26:32Z</time>
+      <name>A921</name>
+      <cmt> A92</cmt>
+      <desc> A92</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ShapingPoint/>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>01004ACE7C002D00D4220D2208001E6EBD65</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+    <rtept lat="48.461621822789311" lon="11.954749831929803">
+      <time>2017-02-24T17:26:33Z</time>
+      <name>A922</name>
+      <cmt> A92</cmt>
+      <desc> A92</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ShapingPoint/>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>01004ACE7C002D00D4220D2208002B764B80</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+    <rtept lat="48.526611328125" lon="12.14813232421875">
+      <time>2017-02-24T17:26:36Z</time>
+      <name>15 und Straße</name>
+      <cmt> 15 und Straße</cmt>
+      <desc> 15 und Straße</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ShapingPoint/>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>00004ACE7C001D00D4220F220820008280A3</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+    <rtept lat="48.34259033203125" lon="12.1343994140625">
+      <time>2017-02-24T17:26:38Z</time>
+      <name>15 und  388</name>
+      <cmt> 15 und  388</cmt>
+      <desc> 15 und  388</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ShapingPoint/>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>00004ACE7C001E00D4220F220820806000A1</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+    <rtept lat="48.2025146484375" lon="11.656494140625">
+      <time>2017-02-24T17:26:40Z</time>
+      <name>A99 und  388 und Straße</name>
+      <cmt> A99 und  388 und Straße</cmt>
+      <desc> A99 und  388 und Straße</desc>
+      <sym>Waypoint</sym>
+      <extensions>
+        <trp:ViaPoint>
+          <trp:CalculationMode>FasterTime</trp:CalculationMode>
+          <trp:ElevationMode>Standard</trp:ElevationMode>
+        </trp:ViaPoint>
+        <gpxx:RoutePointExtension>
+          <gpxx:Subclass>00004ACE7C002E00D4220F2208200047004A</gpxx:Subclass>
+        </gpxx:RoutePointExtension>
+      </extensions>
+    </rtept>
+  </rte>
+
+  <trk>
+    <name>My Track</name>
+    <extensions>
+      <gpxx:TrackExtension>
+        <gpxx:DisplayColor>DarkGray</gpxx:DisplayColor>
+      </gpxx:TrackExtension>
+    </extensions>
+    <trkseg>
+      <trkpt lat="48.3123779296875" lon="11.62353515625">
+        <time>2017-02-24T17:29:21Z</time>
+      </trkpt>
+      <trkpt lat="48.331158254295588" lon="11.708751367405057"/>
+      <trkpt lat="48.417404601350427" lon="11.808869177475572"/>
+      <trkpt lat="48.461621822789311" lon="11.954749831929803"/>
+      <trkpt lat="48.526611328125" lon="12.14813232421875"/>
+      <trkpt lat="48.365112505853176" lon="12.136074872687459"/>
+      <trkpt lat="48.34259033203125" lon="12.1343994140625"/>
+      <trkpt lat="48.277669390663505" lon="11.911738095805049"/>
+      <trkpt lat="48.212319798767567" lon="11.689643813297153"/>
+      <trkpt lat="48.2025146484375" lon="11.656494140625"/>
+    </trkseg>
+  </trk>
+
+</gpx>
