@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 0.2.0 *(2017-02-03)*
+----------------------------
+
+* Added support for routes and waypoints - thanks [mopfattn](https://github.com/mopfattn)!
+* Bumped plugins & dependencies
+
 Version 0.1.6 *(2016-19-12)*
 ----------------------------
 
