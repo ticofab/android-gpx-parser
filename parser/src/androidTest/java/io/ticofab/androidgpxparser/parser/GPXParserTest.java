@@ -18,9 +18,6 @@ import io.ticofab.androidgpxparser.parser.domain.Gpx;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author Marco Pfattner, jambit GmbH
- */
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class GPXParserTest {

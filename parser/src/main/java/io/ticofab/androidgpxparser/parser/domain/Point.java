@@ -5,7 +5,6 @@ import org.joda.time.DateTime;
 /**
  * A point containing a location, time and name.
  *
- * @author Marco Pfattner, jambit GmbH
  */
 public abstract class Point {
     private final Double mLatitude;
