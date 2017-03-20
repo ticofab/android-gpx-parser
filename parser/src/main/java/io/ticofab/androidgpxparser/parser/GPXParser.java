@@ -32,6 +32,7 @@ public class GPXParser {
     static private final String TAG_LAT = "lat";
     static private final String TAG_LON = "lon";
     static private final String TAG_ELEVATION = "ele";
+    static private final String TAG_PDOP = "pdop";
     static private final String TAG_TIME = "time";
     static private final String TAG_WAY_POINT = "wpt";
     static private final String TAG_ROUTE = "rte";
@@ -199,6 +200,9 @@ public class GPXParser {
                 case TAG_TIME:
                     builder.setTime(readTime(parser));
                     break;
+                case TAG_PDOP:
+                    builder.setPdop(readPdop(parser));
+                    break;
                 default:
                     skip(parser);
                     break;
@@ -240,6 +244,13 @@ public class GPXParser {
         DateTime time = ISODateTimeFormat.dateTimeParser().parseDateTime(readText(parser));
         parser.require(XmlPullParser.END_TAG, ns, TAG_TIME);
         return time;
+    }
+
+    private Double readPdop(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_PDOP);
+        Double pdop = Double.parseDouble(readText(parser));
+        parser.require(XmlPullParser.END_TAG, ns, TAG_PDOP);
+        return pdop;
     }
 
     private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {

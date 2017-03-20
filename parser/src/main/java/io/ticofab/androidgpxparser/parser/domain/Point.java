@@ -10,6 +10,7 @@ public abstract class Point {
     private final Double mLatitude;
     private final Double mLongitude;
     private final Double mElevation;
+    private final Double mPdop;
     private final DateTime mTime;
     private String mName;
 
@@ -19,6 +20,7 @@ public abstract class Point {
         mElevation = builder.mElevation;
         mTime = builder.mTime;
         mName = builder.mName;
+        mPdop = builder.mPdop;
     }
 
     /**
@@ -42,6 +44,13 @@ public abstract class Point {
         return mElevation;
     }
 
+    /**
+     * @return the position DOP in meters (can also be used as position accuracy
+     */
+    public Double getPdop() {
+        return mPdop;
+    }
+
     public DateTime getTime() {
         return mTime;
     }
@@ -57,6 +66,7 @@ public abstract class Point {
         private Double mLatitude;
         private Double mLongitude;
         private Double mElevation;
+        private Double mPdop;
         private DateTime mTime;
         private String mName;
 
@@ -77,6 +87,11 @@ public abstract class Point {
 
         public Builder setTime(DateTime time) {
             mTime = time;
+            return this;
+        }
+
+        public Builder setPdop(Double pdop) {
+            mPdop = pdop;
             return this;
         }
 
