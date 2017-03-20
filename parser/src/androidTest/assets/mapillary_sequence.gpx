@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"    ?>
+<gpx version="1.0" creator="Mapillary 334"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns="http://www.topografix.com/GPX/1/0"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+    <time>2017-03-20T15:27:16.000Z</time>
+    <metadata>
+        <extensions>
+            <cameraname>LEGACY_CAM_0</cameraname>
+            <cameraneedsfilesync>false</cameraneedsfilesync>
+            <projectname></projectname>
+            <projectkey></projectkey>
+            <userkey>123sdf</userkey>
+            <sequencekey>395a04cf-7285-429c-b160-35ead7ee8db1</sequencekey>
+            <cameradirectionoffset>90</cameradirectionoffset>
+        </extensions>
+    </metadata>
+    <trk>
+        <trkseg>
+            <trkpt lat="55.607447523764634" lon="13.018782921454983">
+                <pdop>35.0</pdop>
+                <ele>101.0</ele>
+                <time>2017-03-20T15:27:16.000Z</time>
+            </trkpt>
+            <trkpt lat="55.607447523764634" lon="13.018782921454983">
+                <pdop>8.0</pdop>
+                <ele>101.0</ele>
+                <time>2017-03-20T15:30:54.931Z</time>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>
