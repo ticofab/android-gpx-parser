@@ -49,4 +49,14 @@ public class GPXParserTest {
         assertEquals(7, gpx.getRoutes().get(0).getRoutePoints().size());
     }
 
+    @Test
+    public void testMapillary() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("mapillary_sequence.gpx");
+        Gpx gpx = new GPXParser().parse(input);
+        assertEquals(1, gpx.getTracks().size());
+        assertEquals(1, gpx.getTracks().get(0).getTrackSegments().size());
+        assertEquals(2, gpx.getTracks().get(0).getTrackSegments().get(0).getTrackPoints().size());
+        assertEquals(35, (double) gpx.getTracks().get(0).getTrackSegments().get(0).getTrackPoints().get(0).getPdop());
+    }
+
 }
