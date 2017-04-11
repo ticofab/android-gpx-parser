@@ -94,6 +94,7 @@ public class GPXParser {
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
     // to their respective "read" methods for processing. Otherwise, skips the tag.
     private Track readTrack(XmlPullParser parser) throws XmlPullParserException, IOException {
+        String trackName = null;
         List<TrackSegment> segments = new ArrayList<>();
         parser.require(XmlPullParser.START_TAG, ns, TAG_TRACK);
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -102,6 +103,9 @@ public class GPXParser {
             }
             String name = parser.getName();
             switch (name) {
+                case TAG_NAME:
+                    trackName = readName(parser);
+                    break;
                 case TAG_SEGMENT:
                     segments.add(readSegment(parser));
                     break;
@@ -112,6 +116,7 @@ public class GPXParser {
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_TRACK);
         return new Track.Builder()
+                .setTrackName(trackName)
                 .setTrackSegments(segments)
                 .build();
     }

@@ -12,7 +12,7 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:0.2.0'
+compile 'io.ticofab.androidgpxparser:parser:1.0.0'
 ```
 
 Dependencies
