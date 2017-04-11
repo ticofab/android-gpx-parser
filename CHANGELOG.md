@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.0 *(2017-04-11)*
+----------------------------
+
+* Added track name to the parseable fields.
+
 Version 0.2.0 *(2017-02-03)*
 ----------------------------
 
