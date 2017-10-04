@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
+import io.ticofab.androidgpxparser.parser.domain.Link;
 import io.ticofab.androidgpxparser.parser.domain.Point;
 import io.ticofab.androidgpxparser.parser.domain.Route;
 import io.ticofab.androidgpxparser.parser.domain.RoutePoint;
@@ -37,6 +38,13 @@ public class GPXParser {
     static private final String TAG_ROUTE = "rte";
     static private final String TAG_ROUTE_POINT = "rtept";
     static private final String TAG_NAME = "name";
+    static private final String TAG_DESC = "desc";
+    static private final String TAG_CMT = "cmt";
+    static private final String TAG_SRC = "src";
+    static private final String TAG_LINK = "link";
+    static private final String TAG_NUMBER = "number";
+    static private final String TAG_TYPE = "type";
+    static private final String TAG_TEXT = "text";
 
     static private final String ns = null;
 
@@ -94,7 +102,8 @@ public class GPXParser {
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
     // to their respective "read" methods for processing. Otherwise, skips the tag.
     private Track readTrack(XmlPullParser parser) throws XmlPullParserException, IOException {
-        String trackName = null;
+        Track.Builder trackBuilder = new Track.Builder();
+
         List<TrackSegment> segments = new ArrayList<>();
         parser.require(XmlPullParser.START_TAG, ns, TAG_TRACK);
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -104,10 +113,28 @@ public class GPXParser {
             String name = parser.getName();
             switch (name) {
                 case TAG_NAME:
-                    trackName = readName(parser);
+                    trackBuilder.setTrackName(readName(parser));
                     break;
                 case TAG_SEGMENT:
                     segments.add(readSegment(parser));
+                    break;
+                case TAG_DESC:
+                    trackBuilder.setTrackDesc(readDesc(parser));
+                    break;
+                case TAG_CMT:
+                    trackBuilder.setTrackCmt(readCmt(parser));
+                    break;
+                case TAG_SRC:
+                    trackBuilder.setTrackSrc(readString(parser,TAG_SRC));
+                    break;
+                case TAG_LINK:
+                    trackBuilder.setTrackLink(readLink(parser));
+                    break;
+                case TAG_NUMBER:
+                    trackBuilder.setTrackNumber(readNumber(parser));
+                    break;
+                case TAG_TYPE:
+                    trackBuilder.setTrackType(readString(parser,TAG_TYPE));
                     break;
                 default:
                     skip(parser);
@@ -115,10 +142,34 @@ public class GPXParser {
             }
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_TRACK);
-        return new Track.Builder()
-                .setTrackName(trackName)
+        return trackBuilder
                 .setTrackSegments(segments)
                 .build();
+    }
+
+    private Link readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_LINK);
+
+        Link.Builder linkBuilder = new Link.Builder();
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            switch (name) {
+                case TAG_TEXT:
+                    linkBuilder.setLinkText(readString(parser,TAG_TEXT));
+                    break;
+                case TAG_TYPE:
+                    linkBuilder.setLinkType(readString(parser,TAG_TYPE));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+        parser.require(XmlPullParser.END_TAG, ns, TAG_LINK);
+        return linkBuilder.build();
     }
 
     // Processes summary tags in the feed.
@@ -156,6 +207,8 @@ public class GPXParser {
     private Route readRoute(XmlPullParser parser) throws IOException, XmlPullParserException {
         List<RoutePoint> points = new ArrayList<>();
         parser.require(XmlPullParser.START_TAG, ns, TAG_ROUTE);
+        Route.Builder routeBuilder = new Route.Builder();
+
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -165,13 +218,33 @@ public class GPXParser {
                 case TAG_ROUTE_POINT:
                     points.add(readRoutePoint(parser));
                     break;
+                case TAG_NAME:
+                    routeBuilder.setRouteName(readName(parser));
+                    break;
+                case TAG_DESC:
+                    routeBuilder.setRouteDesc(readDesc(parser));
+                    break;
+                case TAG_CMT:
+                    routeBuilder.setRouteCmt(readCmt(parser));
+                    break;
+                case TAG_SRC:
+                    routeBuilder.setRouteSrc(readString(parser,TAG_SRC));
+                    break;
+                case TAG_LINK:
+                    routeBuilder.setRouteLink(readLink(parser));
+                    break;
+                case TAG_NUMBER:
+                    routeBuilder.setRouteNumber(readNumber(parser));
+                    break;
+                case TAG_TYPE:
+                    routeBuilder.setRouteType(readString(parser,TAG_TYPE));
                 default:
                     skip(parser);
                     break;
             }
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_ROUTE);
-        return new Route.Builder()
+        return routeBuilder
                 .setRoutePoints(points)
                 .build();
     }
@@ -227,10 +300,22 @@ public class GPXParser {
     }
 
     private String readName(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, TAG_NAME);
-        String name = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, TAG_NAME);
-        return name;
+        return readString(parser,TAG_NAME);
+    }
+
+    private String readDesc(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readString(parser,TAG_DESC);
+    }
+
+    private String readCmt(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readString(parser,TAG_CMT);
+    }
+
+    private String readString(XmlPullParser parser, String tag) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, tag);
+        String value = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, tag);
+        return value;
     }
 
     private Double readElevation(XmlPullParser parser) throws IOException, XmlPullParserException {
@@ -254,6 +339,13 @@ public class GPXParser {
             parser.nextTag();
         }
         return result;
+    }
+
+    private Integer readNumber(XmlPullParser parser) throws IOException,XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG,ns,TAG_NUMBER);
+        Integer number = Integer.valueOf(readText(parser));
+        parser.require(XmlPullParser.END_TAG,ns,TAG_NUMBER);
+        return number;
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
