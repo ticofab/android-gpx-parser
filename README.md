@@ -1,7 +1,7 @@
 Android GPX Parser
 =======
 
-A library to parse XML Gpx files, built for Android.
+A library to parse XML Gpx files, built for Android. The reference schema is the [Topografix GPX 1.1](http://www.topografix.com/GPX/1/1/).
 Far from complete - pull requests are welcome!
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--gpx--parser-green.svg?style=flat)](https://android-arsenal.com/details/1/2500)
@@ -12,13 +12,13 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:1.0.0'
+compile 'io.ticofab.androidgpxparser:parser:1.1.0'
 ```
 
 Dependencies
 ------------
 
-* [Joda DateTime for Android][1]
+* [Joda DateTime for Android](https://github.com/dlew/joda-time-android)
 
 Usage
 -----
@@ -83,5 +83,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-[1]: https://github.com/dlew/joda-time-android
