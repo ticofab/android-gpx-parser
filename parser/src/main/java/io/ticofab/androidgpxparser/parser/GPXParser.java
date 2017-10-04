@@ -207,6 +207,8 @@ public class GPXParser {
     private Route readRoute(XmlPullParser parser) throws IOException, XmlPullParserException {
         List<RoutePoint> points = new ArrayList<>();
         parser.require(XmlPullParser.START_TAG, ns, TAG_ROUTE);
+        Route.Builder routeBuilder = new Route.Builder();
+
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -216,13 +218,33 @@ public class GPXParser {
                 case TAG_ROUTE_POINT:
                     points.add(readRoutePoint(parser));
                     break;
+                case TAG_NAME:
+                    routeBuilder.setRouteName(readName(parser));
+                    break;
+                case TAG_DESC:
+                    routeBuilder.setRouteDesc(readDesc(parser));
+                    break;
+                case TAG_CMT:
+                    routeBuilder.setRouteCmt(readCmt(parser));
+                    break;
+                case TAG_SRC:
+                    routeBuilder.setRouteSrc(readString(parser,TAG_SRC));
+                    break;
+                case TAG_LINK:
+                    routeBuilder.setRouteLink(readLink(parser));
+                    break;
+                case TAG_NUMBER:
+                    routeBuilder.setRouteNumber(readNumber(parser));
+                    break;
+                case TAG_TYPE:
+                    routeBuilder.setRouteType(readString(parser,TAG_TYPE));
                 default:
                     skip(parser);
                     break;
             }
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_ROUTE);
-        return new Route.Builder()
+        return routeBuilder
                 .setRoutePoints(points)
                 .build();
     }
