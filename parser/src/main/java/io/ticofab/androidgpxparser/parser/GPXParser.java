@@ -238,6 +238,7 @@ public class GPXParser {
                     break;
                 case TAG_TYPE:
                     routeBuilder.setRouteType(readString(parser,TAG_TYPE));
+                    break;
                 default:
                     skip(parser);
                     break;

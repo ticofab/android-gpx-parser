@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.1.1 *(March 15th 2018)*
+
+* Minor bug fixes, updated dependencies.  
+
 ## Version 1.1.0 *(October 4th 2017)*
 
 * Added track and route attributes (which fixes [#14](https://github.com/ticofab/android-gpx-parser/issues/14)) - thanks [StuStirling](https://github.com/StuStirling)! 
