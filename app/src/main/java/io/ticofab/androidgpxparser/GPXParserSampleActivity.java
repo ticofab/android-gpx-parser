@@ -44,7 +44,7 @@ public class GPXParserSampleActivity extends AppCompatActivity {
                 Log.d(TAG, "track " + i + ":");
                 List<TrackSegment> segments = track.getTrackSegments();
                 for (int j = 0; j < segments.size(); j++) {
-                    TrackSegment segment = segments.get(i);
+                    TrackSegment segment = segments.get(j);
                     Log.d(TAG, "  segment " + j + ":");
                     for (TrackPoint trackPoint : segment.getTrackPoints()) {
                         Log.d(TAG, "    point: lat " + trackPoint.getLatitude() + ", lon " + trackPoint.getLongitude());
