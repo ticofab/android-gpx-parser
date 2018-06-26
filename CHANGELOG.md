@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.1.2 *(June 26th 2018)*
+
+* Fix to prevent endless loop in case of malformed GPX track (thanks to D. Elliot!)
+
 ## Version 1.1.1 *(March 15th 2018)*
 
 * Minor bug fixes, updated dependencies.  
