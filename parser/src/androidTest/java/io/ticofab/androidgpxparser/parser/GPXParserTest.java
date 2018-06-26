@@ -49,4 +49,18 @@ public class GPXParserTest {
         assertEquals(7, gpx.getRoutes().get(0).getRoutePoints().size());
     }
 
+    @Test(expected = XmlPullParserException.class)
+    public void testGarminBaseCampExportTruncated() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport-truncated.gpx");
+        new GPXParser().parse(input);
+    }
+
+    @Test(expected = XmlPullParserException.class)
+    public void testGarminBaseCampExportNoClosingTag() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport-noclosingtag.gpx");
+        Gpx gpx = new GPXParser().parse(input);
+        assertEquals(1, gpx.getTracks().size());
+    }
+
+
 }
