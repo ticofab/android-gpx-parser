@@ -13,7 +13,7 @@ Grab via Gradle:
 
 ```groovy
 api 'io.ticofab.androidgpxparser:parser:1.1.2'
-// api 'io.ticofab.androidgpxparser:parser:1.1.2' - for gradle plugin < 3.0.0
+// compile 'io.ticofab.androidgpxparser:parser:1.1.2' - for gradle plugin < 3.0.0
 ```
 
 Dependencies
