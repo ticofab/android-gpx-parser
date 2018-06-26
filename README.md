@@ -12,7 +12,8 @@ Download
 Grab via Gradle:
 
 ```groovy
-compile 'io.ticofab.androidgpxparser:parser:1.1.1'
+api 'io.ticofab.androidgpxparser:parser:1.1.2'
+// api 'io.ticofab.androidgpxparser:parser:1.1.2' - for gradle plugin < 3.0.0
 ```
 
 Dependencies
@@ -70,7 +71,7 @@ Contributions are welcome! Please check the [issues](https://github.com/ticofab/
 License
 --------
 
-    Copyright 2015 - 2017 Fabio Tiriticco - Fabway
+    Copyright 2015 - 2018 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
