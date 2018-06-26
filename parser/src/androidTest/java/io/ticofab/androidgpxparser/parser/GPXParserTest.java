@@ -55,7 +55,7 @@ public class GPXParserTest {
         new GPXParser().parse(input);
     }
 
-    @Test
+    @Test(expected = XmlPullParserException.class)
     public void testGarminBaseCampExportNoClosingTag() throws IOException, XmlPullParserException {
         InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport-noclosingtag.gpx");
         Gpx gpx = new GPXParser().parse(input);

@@ -1,6 +1,5 @@
 package io.ticofab.androidgpxparser.parser;
 
-import android.util.Log;
 import android.util.Xml;
 
 import org.joda.time.DateTime;
@@ -360,9 +359,6 @@ public class GPXParser {
     }
 
     private boolean loopMustContinue(int next) {
-        if (next != XmlPullParser.END_DOCUMENT) {
-            Log.d("fabio", "end reached");
-        }
         return next != XmlPullParser.END_TAG && next != XmlPullParser.END_DOCUMENT;
     }
 }
