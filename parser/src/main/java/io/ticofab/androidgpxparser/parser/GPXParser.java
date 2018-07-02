@@ -264,6 +264,9 @@ public class GPXParser {
                 case TAG_NAME:
                     builder.setName(readName(parser));
                     break;
+                case TAG_DESC:
+                    builder.setDesc(readDesc(parser));
+                    break;
                 case TAG_ELEVATION:
                     builder.setElevation(readElevation(parser));
                     break;
