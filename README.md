@@ -12,8 +12,8 @@ Download
 Grab via Gradle:
 
 ```groovy
-api 'io.ticofab.androidgpxparser:parser:1.1.2'
-// compile 'io.ticofab.androidgpxparser:parser:1.1.2' - for gradle plugin < 3.0.0
+api 'io.ticofab.androidgpxparser:parser:1.2.0'
+// compile 'io.ticofab.androidgpxparser:parser:1.2.0' - for gradle plugin < 3.0.0
 ```
 
 Dependencies

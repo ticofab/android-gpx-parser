@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/ticofab/android-gpx-parser'
     gitUrl = 'https://github.com/ticofab/android-gpx-parser.git'
 
-    libraryVersion = '1.1.2'
+    libraryVersion = '1.2.0'
 
     developerId = 'ticofab'
     developerName = 'Fabio Tiriticco'
@@ -31,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 6
-        versionName "1.1.2"
+        versionCode 7
+        versionName "1.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -46,7 +46,7 @@ android {
 dependencies {
     // JodaTime for Android
     // https://github.com/dlew/joda-time-android
-    implementation 'net.danlew:android.joda:2.9.9.2'
+    implementation 'net.danlew:android.joda:2.9.9.4'
 
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support:support-annotations:27.1.1'

@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.2.0 *(July 2nd 2018)*
+
+* Parsing WayPoint description.
+
 ## Version 1.1.2 *(June 26th 2018)*
 
 * Fix to prevent endless loop in case of malformed GPX track (thanks to D. Elliot!)
