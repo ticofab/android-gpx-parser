@@ -4,14 +4,14 @@ import org.joda.time.DateTime;
 
 /**
  * A point containing a location, time and name.
- *
  */
 public abstract class Point {
     private final Double mLatitude;
     private final Double mLongitude;
     private final Double mElevation;
     private final DateTime mTime;
-    private String mName;
+    private final String mName;
+    private final String mDesc;
 
     Point(Builder builder) {
         mLatitude = builder.mLatitude;
@@ -19,6 +19,7 @@ public abstract class Point {
         mElevation = builder.mElevation;
         mTime = builder.mTime;
         mName = builder.mName;
+        mDesc = builder.mDesc;
     }
 
     /**
@@ -53,12 +54,20 @@ public abstract class Point {
         return mName;
     }
 
+    /**
+     * @return the description
+     */
+    public String getDesc() {
+        return mDesc;
+    }
+
     public static abstract class Builder {
         private Double mLatitude;
         private Double mLongitude;
         private Double mElevation;
         private DateTime mTime;
         private String mName;
+        private String mDesc;
 
         public Builder setLatitude(Double latitude) {
             mLatitude = latitude;
@@ -80,8 +89,13 @@ public abstract class Point {
             return this;
         }
 
-        public Builder setName(String mName) {
-            this.mName = mName;
+        public Builder setName(String mame) {
+            mName = mame;
+            return this;
+        }
+
+        public Builder setDesc(String desc) {
+            mDesc = desc;
             return this;
         }
 

@@ -72,38 +72,38 @@ public class Route {
             return this;
         }
 
-        public Builder setRouteName(String mRouteName) {
-            this.mRouteName = mRouteName;
+        public Builder setRouteName(String routeName) {
+            mRouteName = routeName;
             return this;
         }
 
-        public Builder setRouteDesc(String mRouteDesc) {
-            this.mRouteDesc = mRouteDesc;
+        public Builder setRouteDesc(String routeDesc) {
+            mRouteDesc = routeDesc;
             return this;
         }
 
-        public Builder setRouteCmt(String mRouteCmt) {
-            this.mRouteCmt = mRouteCmt;
+        public Builder setRouteCmt(String routeCmt) {
+            mRouteCmt = routeCmt;
             return this;
         }
 
-        public Builder setRouteSrc(String mRouteSrc) {
-            this.mRouteSrc = mRouteSrc;
+        public Builder setRouteSrc(String routeSrc) {
+            mRouteSrc = routeSrc;
             return this;
         }
 
-        public Builder setRouteNumber(Integer mRouteNumber) {
-            this.mRouteNumber = mRouteNumber;
+        public Builder setRouteNumber(Integer routeNumber) {
+            mRouteNumber = routeNumber;
             return this;
         }
 
-        public Builder setRouteLink(Link mRouteLink) {
-            this.mRouteLink = mRouteLink;
+        public Builder setRouteLink(Link routeLink) {
+            mRouteLink = routeLink;
             return this;
         }
 
-        public Builder setRouteType(String mRouteType) {
-            this.mRouteType = mRouteType;
+        public Builder setRouteType(String routeType) {
+            mRouteType = routeType;
             return this;
         }
 
