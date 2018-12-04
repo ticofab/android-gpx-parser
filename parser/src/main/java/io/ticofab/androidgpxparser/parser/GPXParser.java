@@ -97,7 +97,6 @@ public class GPXParser {
             }
             String name = parser.getName();
             // Starts by looking for the entry tag
-            Log.d("GPXParser","Parsing TAG: "+name);
             switch (name) {
                 case TAG_METADATA:
                     builder.setMetadata(readMetadata(parser));
