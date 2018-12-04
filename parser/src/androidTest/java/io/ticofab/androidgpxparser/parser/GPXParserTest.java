@@ -42,8 +42,8 @@ public class GPXParserTest {
     public void testGarminBaseCampExport() throws IOException, XmlPullParserException {
         InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport.gpx");
         Gpx gpx = new GPXParser().parse(input);
-        assertEquals("http://www.garmin.com",gpx.getMetadata().getLink().getHref());
-        assertEquals("Garmin International",gpx.getMetadata().getLink().getText());
+        assertEquals("http://www.garmin.com", gpx.getMetadata().getLink().getHref());
+        assertEquals("Garmin International", gpx.getMetadata().getLink().getText());
         assertNotNull(gpx.getMetadata().getBounds());
 
         assertEquals(1, gpx.getTracks().size());
