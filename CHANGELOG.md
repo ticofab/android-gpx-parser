@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.3.0 *(Dec 8th 2018)* 
+
+* Parsing GPX Metadata - thanks [StuStirling](https://github.com/StuStirling)!
+
 ## Version 1.2.0 *(July 2nd 2018)*
 
 * Parsing WayPoint description.

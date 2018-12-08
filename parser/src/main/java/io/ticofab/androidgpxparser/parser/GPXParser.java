@@ -1,5 +1,6 @@
 package io.ticofab.androidgpxparser.parser;
 
+import android.util.Log;
 import android.util.Xml;
 
 import org.joda.time.DateTime;
@@ -12,8 +13,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.ticofab.androidgpxparser.parser.domain.Bounds;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Link;
+import io.ticofab.androidgpxparser.parser.domain.Metadata;
 import io.ticofab.androidgpxparser.parser.domain.Point;
 import io.ticofab.androidgpxparser.parser.domain.Route;
 import io.ticofab.androidgpxparser.parser.domain.RoutePoint;
@@ -27,6 +30,9 @@ import io.ticofab.androidgpxparser.parser.task.GpxFetchedAndParsed;
 public class GPXParser {
 
     static private final String TAG_GPX = "gpx";
+    static private final String TAG_VERSION = "version";
+    static private final String TAG_CREATOR = "creator";
+    static private final String TAG_METADATA = "metadata";
     static private final String TAG_TRACK = "trk";
     static private final String TAG_SEGMENT = "trkseg";
     static private final String TAG_TRACK_POINT = "trkpt";
@@ -45,6 +51,16 @@ public class GPXParser {
     static private final String TAG_NUMBER = "number";
     static private final String TAG_TYPE = "type";
     static private final String TAG_TEXT = "text";
+    static private final String TAG_AUTHOR = "author";
+    static private final String TAG_COPYRIGHT = "copyright";
+    static private final String TAG_KEYWORDS = "keywords";
+    static private final String TAG_BOUNDS = "bounds";
+    static private final String TAG_EXTENSIONS = "extensions";
+    static private final String TAG_MIN_LAT = "minlat";
+    static private final String TAG_MIN_LON = "minlon";
+    static private final String TAG_MAX_LAT = "maxlat";
+    static private final String TAG_MAX_LON = "maxlon";
+    static private final String TAG_HREF = "href";
 
     static private final String ns = null;
 
@@ -70,6 +86,11 @@ public class GPXParser {
         List<Route> routes = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, ns, TAG_GPX);
+
+        Gpx.Builder builder = new Gpx.Builder();
+        builder.setVersion(parser.getAttributeValue(null,TAG_VERSION));
+        builder.setCreator(parser.getAttributeValue(null,TAG_CREATOR));
+
         while (loopMustContinue(parser.next())) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -77,6 +98,9 @@ public class GPXParser {
             String name = parser.getName();
             // Starts by looking for the entry tag
             switch (name) {
+                case TAG_METADATA:
+                    builder.setMetadata(readMetadata(parser));
+                    break;
                 case TAG_WAY_POINT:
                     wayPoints.add(readWayPoint(parser));
                     break;
@@ -92,7 +116,7 @@ public class GPXParser {
             }
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_GPX);
-        return new Gpx.Builder()
+        return builder
                 .setWayPoints(wayPoints)
                 .setRoutes(routes)
                 .setTracks(tracks)
@@ -151,6 +175,8 @@ public class GPXParser {
         parser.require(XmlPullParser.START_TAG, ns, TAG_LINK);
 
         Link.Builder linkBuilder = new Link.Builder();
+        linkBuilder.setLinkHref(parser.getAttributeValue(null,TAG_HREF));
+
         while (loopMustContinue(parser.next())) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -170,6 +196,22 @@ public class GPXParser {
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_LINK);
         return linkBuilder.build();
+    }
+
+    private Bounds readBounds(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_BOUNDS);
+        Bounds bounds = new Bounds.Builder()
+                .setMinLat(Double.valueOf(parser.getAttributeValue(null, TAG_MIN_LAT)))
+                .setMinLon(Double.valueOf(parser.getAttributeValue(null, TAG_MIN_LON)))
+                .setMaxLat(Double.valueOf(parser.getAttributeValue(null, TAG_MAX_LAT)))
+                .setMaxLon(Double.valueOf(parser.getAttributeValue(null, TAG_MAX_LON)))
+                .build();
+
+        parser.nextTag();
+
+        parser.require(XmlPullParser.END_TAG, ns, TAG_BOUNDS);
+
+        return bounds;
     }
 
     // Processes summary tags in the feed.
@@ -281,6 +323,52 @@ public class GPXParser {
 
         parser.require(XmlPullParser.END_TAG, ns, tagName);
         return builder.build();
+    }
+
+    private Metadata readMetadata(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Metadata.Builder metadataBuilder = new Metadata.Builder();
+
+        parser.require(XmlPullParser.START_TAG, ns, TAG_METADATA);
+        while (loopMustContinue(parser.next())) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            switch (name) {
+                case TAG_NAME:
+                    metadataBuilder.setName(readName(parser));
+                    break;
+                case TAG_DESC:
+                    metadataBuilder.setDesc(readDesc(parser));
+                    break;
+                case TAG_AUTHOR:
+                    metadataBuilder.setAuthor(readString(parser,TAG_AUTHOR));
+                    break;
+                case TAG_COPYRIGHT:
+                    metadataBuilder.setCopyright(readString(parser, TAG_COPYRIGHT));
+                    break;
+                case TAG_LINK:
+                    metadataBuilder.setLink(readLink(parser));
+                    break;
+                case TAG_TIME:
+                    metadataBuilder.setTime(readTime(parser));
+                    break;
+                case TAG_KEYWORDS:
+                    metadataBuilder.setKeywords(readString(parser, TAG_KEYWORDS));
+                    break;
+                case TAG_BOUNDS:
+                    metadataBuilder.setBounds(readBounds(parser));
+                    break;
+                case TAG_EXTENSIONS:
+                    metadataBuilder.setExtensions(readString(parser, TAG_EXTENSIONS));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+        parser.require(XmlPullParser.END_TAG, ns, TAG_METADATA);
+        return metadataBuilder.build();
     }
 
     private WayPoint readWayPoint(XmlPullParser parser) throws XmlPullParserException, IOException {

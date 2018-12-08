@@ -6,12 +6,18 @@ package io.ticofab.androidgpxparser.parser.domain;
 
 public class Link {
 
+    private final String mLinkHref;
     private final String mLinkText;
     private final String mLinkType;
 
     private Link(Builder builder) {
+        mLinkHref = builder.mLinkHref;
         mLinkText = builder.mLinkText;
         mLinkType = builder.mLinkType;
+    }
+
+    public String getHref() {
+        return mLinkHref;
     }
 
     public String getText() {
@@ -23,11 +29,17 @@ public class Link {
     }
 
     public static class Builder {
+        private String mLinkHref;
         private String mLinkText;
         private String mLinkType;
 
         public Builder() {
 
+        }
+
+        public Builder setLinkHref(String linkHref) {
+            mLinkHref = linkHref;
+            return this;
         }
 
         public Builder setLinkText(String linkText) {

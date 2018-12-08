@@ -17,6 +17,7 @@ import java.io.InputStream;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -41,6 +42,10 @@ public class GPXParserTest {
     public void testGarminBaseCampExport() throws IOException, XmlPullParserException {
         InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport.gpx");
         Gpx gpx = new GPXParser().parse(input);
+        assertEquals("http://www.garmin.com", gpx.getMetadata().getLink().getHref());
+        assertEquals("Garmin International", gpx.getMetadata().getLink().getText());
+        assertNotNull(gpx.getMetadata().getBounds());
+
         assertEquals(1, gpx.getTracks().size());
         assertEquals(1, gpx.getTracks().get(0).getTrackSegments().size());
         assertEquals(10, gpx.getTracks().get(0).getTrackSegments().get(0).getTrackPoints().size());
