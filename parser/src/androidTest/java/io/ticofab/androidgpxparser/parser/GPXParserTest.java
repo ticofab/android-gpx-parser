@@ -54,6 +54,7 @@ public class GPXParserTest {
         assertEquals(7, gpx.getRoutes().get(0).getRoutePoints().size());
         assertEquals(" A92", gpx.getWayPoints().get(0).getDesc());
         assertEquals("Erding Ab", gpx.getWayPoints().get(2).getDesc());
+        assertEquals("user", gpx.getWayPoints().get(0).getType());
     }
 
     @Test(expected = XmlPullParserException.class)
