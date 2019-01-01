@@ -314,6 +314,9 @@ public class GPXParser {
                 case TAG_TIME:
                     builder.setTime(readTime(parser));
                     break;
+                case TAG_TYPE:
+                    builder.setType(readType(parser));
+                    break;
                 default:
                     skip(parser);
                     break;
@@ -388,6 +391,10 @@ public class GPXParser {
 
     private String readDesc(XmlPullParser parser) throws IOException, XmlPullParserException {
         return readString(parser, TAG_DESC);
+    }
+
+    private String readType(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readString(parser, TAG_TYPE);
     }
 
     private String readCmt(XmlPullParser parser) throws IOException, XmlPullParserException {
