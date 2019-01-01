@@ -12,8 +12,8 @@ Download
 Grab via Gradle:
 
 ```groovy
-api 'io.ticofab.androidgpxparser:parser:1.3.0'
-// compile 'io.ticofab.androidgpxparser:parser:1.3.0' - for gradle plugin < 3.0.0
+api 'io.ticofab.androidgpxparser:parser:1.4.0'
+// compile 'io.ticofab.androidgpxparser:parser:1.4.0' - for gradle plugin < 3.0.0
 ```
 
 Dependencies
@@ -53,15 +53,15 @@ or you might want to fetch the Gpx track from a server and parse it. In that cas
 
 ```java
 mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
-            @Override
-            public void onGpxFetchedAndParsed(Gpx gpx) {
-                if (gpx == null) {
-                    // error parsing track
-                } else {
-                    // do something with the parsed track
-                }
-            }
-        });
+      @Override
+      public void onGpxFetchedAndParsed(Gpx gpx) {
+          if (gpx == null) {
+              // error parsing track
+          } else {
+              // do something with the parsed track
+          }
+      }
+  });
 ```
 
 Contribute
@@ -72,7 +72,7 @@ Contributions are welcome! Please check the [issues](https://github.com/ticofab/
 License
 --------
 
-    Copyright 2015 - 2018 Fabio Tiriticco - Fabway
+    Copyright 2015 - 2019 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

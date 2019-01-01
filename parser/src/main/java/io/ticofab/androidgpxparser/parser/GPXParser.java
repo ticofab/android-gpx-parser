@@ -1,6 +1,5 @@
 package io.ticofab.androidgpxparser.parser;
 
-import android.util.Log;
 import android.util.Xml;
 
 import org.joda.time.DateTime;
@@ -88,8 +87,8 @@ public class GPXParser {
         parser.require(XmlPullParser.START_TAG, ns, TAG_GPX);
 
         Gpx.Builder builder = new Gpx.Builder();
-        builder.setVersion(parser.getAttributeValue(null,TAG_VERSION));
-        builder.setCreator(parser.getAttributeValue(null,TAG_CREATOR));
+        builder.setVersion(parser.getAttributeValue(null, TAG_VERSION));
+        builder.setCreator(parser.getAttributeValue(null, TAG_CREATOR));
 
         while (loopMustContinue(parser.next())) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -175,7 +174,7 @@ public class GPXParser {
         parser.require(XmlPullParser.START_TAG, ns, TAG_LINK);
 
         Link.Builder linkBuilder = new Link.Builder();
-        linkBuilder.setLinkHref(parser.getAttributeValue(null,TAG_HREF));
+        linkBuilder.setLinkHref(parser.getAttributeValue(null, TAG_HREF));
 
         while (loopMustContinue(parser.next())) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -315,6 +314,9 @@ public class GPXParser {
                 case TAG_TIME:
                     builder.setTime(readTime(parser));
                     break;
+                case TAG_TYPE:
+                    builder.setType(readType(parser));
+                    break;
                 default:
                     skip(parser);
                     break;
@@ -342,7 +344,7 @@ public class GPXParser {
                     metadataBuilder.setDesc(readDesc(parser));
                     break;
                 case TAG_AUTHOR:
-                    metadataBuilder.setAuthor(readString(parser,TAG_AUTHOR));
+                    metadataBuilder.setAuthor(readString(parser, TAG_AUTHOR));
                     break;
                 case TAG_COPYRIGHT:
                     metadataBuilder.setCopyright(readString(parser, TAG_COPYRIGHT));
@@ -389,6 +391,10 @@ public class GPXParser {
 
     private String readDesc(XmlPullParser parser) throws IOException, XmlPullParserException {
         return readString(parser, TAG_DESC);
+    }
+
+    private String readType(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readString(parser, TAG_TYPE);
     }
 
     private String readCmt(XmlPullParser parser) throws IOException, XmlPullParserException {

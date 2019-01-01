@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.4.0 *(Jan 1st 2019)* 
+
+* Parsing Waypoint Type - thanks [Pygmalion69](https://github.com/Pygmalion69)!
+
 ## Version 1.3.0 *(Dec 8th 2018)* 
 
 * Parsing GPX Metadata - thanks [StuStirling](https://github.com/StuStirling)!
