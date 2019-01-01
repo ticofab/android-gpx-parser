@@ -12,6 +12,7 @@ public abstract class Point {
     private final DateTime mTime;
     private final String mName;
     private final String mDesc;
+    private final String mType;
 
     Point(Builder builder) {
         mLatitude = builder.mLatitude;
@@ -20,6 +21,7 @@ public abstract class Point {
         mTime = builder.mTime;
         mName = builder.mName;
         mDesc = builder.mDesc;
+        mType = builder.mType;
     }
 
     /**
@@ -61,6 +63,13 @@ public abstract class Point {
         return mDesc;
     }
 
+    /**
+     * @return the type (category)
+     */
+    public String getType() {
+        return mType;
+    }
+
     public static abstract class Builder {
         private Double mLatitude;
         private Double mLongitude;
@@ -68,6 +77,7 @@ public abstract class Point {
         private DateTime mTime;
         private String mName;
         private String mDesc;
+        private String mType;
 
         public Builder setLatitude(Double latitude) {
             mLatitude = latitude;
@@ -96,6 +106,11 @@ public abstract class Point {
 
         public Builder setDesc(String desc) {
             mDesc = desc;
+            return this;
+        }
+
+        public Builder setType(String type) {
+            mType = type;
             return this;
         }
 
