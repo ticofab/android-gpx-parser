@@ -7,7 +7,7 @@ public class Metadata {
     private final String mName;
     private final String mDesc;
     private final String mAuthor;
-    private final String mCopyright;
+    private final Copyright mCopyright;
     private final Link mLink;
     private final DateTime mTime;
     private final String mKeywords;
@@ -38,7 +38,7 @@ public class Metadata {
         return mAuthor;
     }
 
-    public String getCopyright() {
+    public Copyright getCopyright() {
         return mCopyright;
     }
 
@@ -66,7 +66,7 @@ public class Metadata {
         private String mName;
         private String mDesc;
         private String mAuthor;
-        private String mCopyright;
+        private Copyright mCopyright;
         private Link mLink;
         private DateTime mTime;
         private String mKeywords;
@@ -88,7 +88,7 @@ public class Metadata {
             return this;
         }
 
-        public Builder setCopyright(String mCopyright) {
+        public Builder setCopyright(Copyright mCopyright) {
             this.mCopyright = mCopyright;
             return this;
         }

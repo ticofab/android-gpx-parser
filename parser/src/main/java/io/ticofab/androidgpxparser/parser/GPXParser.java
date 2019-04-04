@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.ticofab.androidgpxparser.parser.domain.Bounds;
+import io.ticofab.androidgpxparser.parser.domain.Copyright;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Link;
 import io.ticofab.androidgpxparser.parser.domain.Metadata;
@@ -60,6 +61,8 @@ public class GPXParser {
     static private final String TAG_MAX_LAT = "maxlat";
     static private final String TAG_MAX_LON = "maxlon";
     static private final String TAG_HREF = "href";
+    static private final String TAG_YEAR = "year";
+    static private final String TAG_LICENSE = "license";
 
     static private final String ns = null;
 
@@ -347,7 +350,7 @@ public class GPXParser {
                     metadataBuilder.setAuthor(readString(parser, TAG_AUTHOR));
                     break;
                 case TAG_COPYRIGHT:
-                    metadataBuilder.setCopyright(readString(parser, TAG_COPYRIGHT));
+                    metadataBuilder.setCopyright(readCopyright(parser));
                     break;
                 case TAG_LINK:
                     metadataBuilder.setLink(readLink(parser));
@@ -371,6 +374,33 @@ public class GPXParser {
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_METADATA);
         return metadataBuilder.build();
+    }
+
+    private Copyright readCopyright(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_COPYRIGHT);
+
+        Copyright.Builder copyrightBuilder = new Copyright.Builder();
+        copyrightBuilder.setAuthor(parser.getAttributeValue(null, TAG_AUTHOR));
+
+        while (loopMustContinue(parser.next())) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            switch (name) {
+                case TAG_YEAR:
+                    copyrightBuilder.setYear(readString(parser, TAG_YEAR));
+                    break;
+                case TAG_LICENSE:
+                    copyrightBuilder.setLicense(readString(parser, TAG_LICENSE));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+        parser.require(XmlPullParser.END_TAG, ns, TAG_COPYRIGHT);
+        return copyrightBuilder.build();
     }
 
     private WayPoint readWayPoint(XmlPullParser parser) throws XmlPullParserException, IOException {
