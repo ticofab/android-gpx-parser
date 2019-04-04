@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,10 +15,17 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import io.ticofab.androidgpxparser.parser.domain.Author;
+import io.ticofab.androidgpxparser.parser.domain.Copyright;
+import io.ticofab.androidgpxparser.parser.domain.Email;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
+import io.ticofab.androidgpxparser.parser.domain.Link;
+import io.ticofab.androidgpxparser.parser.domain.Metadata;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -70,5 +78,68 @@ public class GPXParserTest {
         assertEquals(1, gpx.getTracks().size());
     }
 
+    @Test
+    public void testFullMetadataParsing() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("metadata-full.gpx");
+        Gpx gpx = new GPXParser().parse(input);
 
+        final Metadata metadata = gpx.getMetadata();
+        // Name
+        assertEquals("metadata-full", metadata.getName());
+        assertEquals("Full metadata test", metadata.getDesc());
+
+        // Author
+        final Author author = metadata.getAuthor();
+        assertEquals("John Doe", author.getName());
+
+        // Author email
+        final Email email = author.getEmail();
+        assertEquals("john.doe", email.getId());
+        assertEquals("example.org", email.getDomain());
+
+        // Author link
+        final Link authorLink = author.getLink();
+        assertEquals("www.example.org", authorLink.getHref());
+        assertEquals("Example Org.", authorLink.getText());
+        assertEquals("text/html", authorLink.getType());
+
+        // Copyright
+        final Copyright copyright = metadata.getCopyright();
+        assertEquals("Jane Doe", copyright.getAuthor());
+        assertEquals("2019", copyright.getYear());
+        assertEquals("https://www.apache.org/licenses/LICENSE-2.0.txt", copyright.getLicense());
+
+        // Link
+        final Link link = metadata.getLink();
+        assertEquals("www.example.org", link.getHref());
+        assertNull(link.getText());
+        assertNull(link.getType());
+
+        // Time
+        final DateTime expectedTime = DateTime.parse("2019-04-04T07:00:00+03:00");
+        assertTrue(expectedTime.isEqual(metadata.getTime()));
+
+        // Keywords
+        assertEquals("metadata, test", metadata.getKeywords());
+    }
+
+    @Test
+    public void testMinimalMetadataParsing() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("metadata-minimal.gpx");
+        Gpx gpx = new GPXParser().parse(input);
+
+        final Metadata metadata = gpx.getMetadata();
+
+        // Author
+        final Author author = metadata.getAuthor();
+        assertNull(author.getName());
+        assertNull(author.getEmail());
+        assertNull(author.getLink());
+
+        // Copyright
+        final Copyright copyright = metadata.getCopyright();
+        assertEquals("Jane Doe", copyright.getAuthor());
+        assertNull(copyright.getYear());
+        assertNull(copyright.getLicense());
+    }
 }

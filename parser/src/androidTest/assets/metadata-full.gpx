@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" creator="Sports Tracker" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+
+  <metadata>
+    <name>metadata-full</name>
+    <desc>Full metadata test</desc>
+    <author>
+      <name>John Doe</name>
+      <email id="john.doe" domain="example.org"/>
+      <link href="www.example.org">
+        <text>Example Org.</text>
+        <type>text/html</type>
+      </link>
+    </author>
+    <copyright author="Jane Doe">
+      <year>2019</year>
+      <license>https://www.apache.org/licenses/LICENSE-2.0.txt</license>
+    </copyright>
+    <link href="www.example.org"/>
+    <time>2019-04-04T07:00:00+03:00</time>
+    <keywords>metadata, test</keywords>
+    <bounds maxlat="70.23250000" maxlon="31.63944444" minlat="59.93305556" minlon="20.78944444"/>
+  </metadata>
+
+</gpx>
