@@ -12,7 +12,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.ticofab.androidgpxparser.parser.domain.Author;
 import io.ticofab.androidgpxparser.parser.domain.Bounds;
+import io.ticofab.androidgpxparser.parser.domain.Copyright;
+import io.ticofab.androidgpxparser.parser.domain.Email;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Link;
 import io.ticofab.androidgpxparser.parser.domain.Metadata;
@@ -60,6 +63,11 @@ public class GPXParser {
     static private final String TAG_MAX_LAT = "maxlat";
     static private final String TAG_MAX_LON = "maxlon";
     static private final String TAG_HREF = "href";
+    static private final String TAG_YEAR = "year";
+    static private final String TAG_LICENSE = "license";
+    static private final String TAG_EMAIL = "email";
+    static private final String TAG_ID = "id";
+    static private final String TAG_DOMAIN = "domain";
 
     static private final String ns = null;
 
@@ -344,10 +352,10 @@ public class GPXParser {
                     metadataBuilder.setDesc(readDesc(parser));
                     break;
                 case TAG_AUTHOR:
-                    metadataBuilder.setAuthor(readString(parser, TAG_AUTHOR));
+                    metadataBuilder.setAuthor(readAuthor(parser));
                     break;
                 case TAG_COPYRIGHT:
-                    metadataBuilder.setCopyright(readString(parser, TAG_COPYRIGHT));
+                    metadataBuilder.setCopyright(readCopyright(parser));
                     break;
                 case TAG_LINK:
                     metadataBuilder.setLink(readLink(parser));
@@ -371,6 +379,75 @@ public class GPXParser {
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_METADATA);
         return metadataBuilder.build();
+    }
+
+    private Author readAuthor(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Author.Builder authorBuilder = new Author.Builder();
+
+        parser.require(XmlPullParser.START_TAG, ns, TAG_AUTHOR);
+        while (loopMustContinue(parser.next())) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            switch (name) {
+                case TAG_NAME:
+                    authorBuilder.setName(readString(parser, TAG_NAME));
+                    break;
+                case TAG_EMAIL:
+                    authorBuilder.setEmail(readEmail(parser));
+                    break;
+                case TAG_LINK:
+                    authorBuilder.setLink(readLink(parser));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+        parser.require(XmlPullParser.END_TAG, ns, TAG_AUTHOR);
+        return authorBuilder.build();
+    }
+
+    private Email readEmail(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_EMAIL);
+
+        Email.Builder emailBuilder = new Email.Builder();
+        emailBuilder.setId(parser.getAttributeValue(null, TAG_ID));
+        emailBuilder.setDomain(parser.getAttributeValue(null, TAG_DOMAIN));
+
+        // Email tag is self closed, advance the parser to next event
+        parser.next();
+
+        parser.require(XmlPullParser.END_TAG, ns, TAG_EMAIL);
+        return emailBuilder.build();
+    }
+
+    private Copyright readCopyright(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_COPYRIGHT);
+
+        Copyright.Builder copyrightBuilder = new Copyright.Builder();
+        copyrightBuilder.setAuthor(parser.getAttributeValue(null, TAG_AUTHOR));
+
+        while (loopMustContinue(parser.next())) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            switch (name) {
+                case TAG_YEAR:
+                    copyrightBuilder.setYear(readString(parser, TAG_YEAR));
+                    break;
+                case TAG_LICENSE:
+                    copyrightBuilder.setLicense(readString(parser, TAG_LICENSE));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+        parser.require(XmlPullParser.END_TAG, ns, TAG_COPYRIGHT);
+        return copyrightBuilder.build();
     }
 
     private WayPoint readWayPoint(XmlPullParser parser) throws XmlPullParserException, IOException {
