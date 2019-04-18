@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.5.0 *(Apr 18th 2019)* 
+
+* Parsing full Metadata information - thanks [Taneli Korry](https://github.com/tkorri)!
+
 ## Version 1.4.0 *(Jan 1st 2019)* 
 
 * Parsing Waypoint Type - thanks [Pygmalion69](https://github.com/Pygmalion69)!

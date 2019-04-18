@@ -12,7 +12,7 @@ Download
 Grab via Gradle:
 
 ```groovy
-api 'io.ticofab.androidgpxparser:parser:1.4.0'
+api 'io.ticofab.androidgpxparser:parser:1.5.0'
 // compile 'io.ticofab.androidgpxparser:parser:1.4.0' - for gradle plugin < 3.0.0
 ```
 
@@ -45,7 +45,7 @@ if (parsedGpx == null) {
     // error parsing track
 } else {
     // do something with the parsed track
-    // see the included example app
+    // see included example app and tests
 }
 ```
 
@@ -59,6 +59,7 @@ mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
               // error parsing track
           } else {
               // do something with the parsed track
+              // see included example app and tests
           }
       }
   });
