@@ -106,7 +106,7 @@ public class GPXParserTest {
         // Copyright
         final Copyright copyright = metadata.getCopyright();
         assertEquals("Jane Doe", copyright.getAuthor());
-        assertEquals("2019", copyright.getYear());
+        assertEquals((Integer)2019, copyright.getYear());
         assertEquals("https://www.apache.org/licenses/LICENSE-2.0.txt", copyright.getLicense());
 
         // Link

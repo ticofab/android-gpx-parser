@@ -3,20 +3,20 @@ package io.ticofab.androidgpxparser.parser.domain;
 public class Copyright {
 
     private final String mAuthor;
-    private final String mYear;
+    private final Integer mYear;
     private final String mLicense;
 
     private Copyright(Builder builder) {
-        this.mAuthor = builder.mAuthor;
-        this.mYear = builder.mYear;
-        this.mLicense = builder.mLicense;
+        mAuthor = builder.mAuthor;
+        mYear = builder.mYear;
+        mLicense = builder.mLicense;
     }
 
     public String getAuthor() {
         return mAuthor;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return mYear;
     }
 
@@ -26,21 +26,21 @@ public class Copyright {
 
     public static class Builder {
         private String mAuthor;
-        private String mYear;
+        private Integer mYear;
         private String mLicense;
 
-        public Builder setAuthor(String mAuthor) {
-            this.mAuthor = mAuthor;
+        public Builder setAuthor(String author) {
+            mAuthor = author;
             return this;
         }
 
-        public Builder setYear(String mYear) {
-            this.mYear = mYear;
+        public Builder setYear(Integer year) {
+            mYear = year;
             return this;
         }
 
-        public Builder setLicense(String mLicense) {
-            this.mLicense = mLicense;
+        public Builder setLicense(String license) {
+            mLicense = license;
             return this;
         }
 

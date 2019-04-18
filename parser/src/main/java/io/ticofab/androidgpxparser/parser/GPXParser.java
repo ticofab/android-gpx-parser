@@ -230,13 +230,10 @@ public class GPXParser {
                 continue;
             }
             String name = parser.getName();
-            switch (name) {
-                case TAG_TRACK_POINT:
-                    points.add(readTrackPoint(parser));
-                    break;
-                default:
-                    skip(parser);
-                    break;
+            if (TAG_TRACK_POINT.equals(name)) {
+                points.add(readTrackPoint(parser));
+            } else {
+                skip(parser);
             }
         }
         parser.require(XmlPullParser.END_TAG, ns, TAG_SEGMENT);
@@ -436,7 +433,7 @@ public class GPXParser {
             String name = parser.getName();
             switch (name) {
                 case TAG_YEAR:
-                    copyrightBuilder.setYear(readString(parser, TAG_YEAR));
+                    copyrightBuilder.setYear(readYear(parser));
                     break;
                 case TAG_LICENSE:
                     copyrightBuilder.setLicense(readString(parser, TAG_LICENSE));
@@ -508,11 +505,26 @@ public class GPXParser {
         return result;
     }
 
-    private Integer readNumber(XmlPullParser parser) throws IOException, XmlPullParserException {
+    private Integer readNumber(XmlPullParser parser) throws IOException, XmlPullParserException, NumberFormatException {
         parser.require(XmlPullParser.START_TAG, ns, TAG_NUMBER);
         Integer number = Integer.valueOf(readText(parser));
         parser.require(XmlPullParser.END_TAG, ns, TAG_NUMBER);
         return number;
+    }
+
+    private Integer readYear(XmlPullParser parser) throws IOException, XmlPullParserException, NumberFormatException {
+        parser.require(XmlPullParser.START_TAG, ns, TAG_YEAR);
+        String yearStr = readText(parser);
+
+        // we might need to strip an optional time-zone, even though I've never seen it
+        // "2019" vs "2019+05:00" or "2019-03:00"
+        int timeZoneStart = yearStr.indexOf('+');
+        if (timeZoneStart == -1) timeZoneStart = yearStr.indexOf('-');
+        yearStr = (timeZoneStart == -1) ? yearStr : yearStr.substring(0, timeZoneStart);
+
+        Integer year = Integer.valueOf(yearStr);
+        parser.require(XmlPullParser.END_TAG, ns, TAG_YEAR);
+        return year;
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
