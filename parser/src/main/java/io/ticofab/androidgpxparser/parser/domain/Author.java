@@ -29,18 +29,18 @@ public class Author {
         private Email mEmail;
         private Link mLink;
 
-        public Builder setName(String mName) {
-            this.mName = mName;
+        public Builder setName(String name) {
+            mName = name;
             return this;
         }
 
-        public Builder setEmail(Email mEmail) {
-            this.mEmail = mEmail;
+        public Builder setEmail(Email email) {
+            mEmail = email;
             return this;
         }
 
-        public Builder setLink(Link mLink) {
-            this.mLink = mLink;
+        public Builder setLink(Link link) {
+            mLink = link;
             return this;
         }
 

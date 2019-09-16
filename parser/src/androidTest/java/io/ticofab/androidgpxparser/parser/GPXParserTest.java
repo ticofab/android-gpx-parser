@@ -37,6 +37,13 @@ public class GPXParserTest {
     }
 
     @Test
+    public void testShoresOfDerwentwater() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("shores-of-derwentwater.xml");
+        Gpx gpx = new GPXParser().parse(input);
+        assertNotNull(gpx); // testing that there is no crash, really
+    }
+
+    @Test
     public void testWadlbeisserExport() throws IOException, XmlPullParserException {
         InputStream input = InstrumentationRegistry.getContext().getAssets().open("wadlbeisserExport.gpx");
         Gpx gpx = new GPXParser().parse(input);

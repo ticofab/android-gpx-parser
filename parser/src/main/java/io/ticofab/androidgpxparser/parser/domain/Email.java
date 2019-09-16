@@ -22,13 +22,13 @@ public class Email {
         private String mId;
         private String mDomain;
 
-        public Builder setId(String mId) {
-            this.mId = mId;
+        public Builder setId(String id) {
+            mId = id;
             return this;
         }
 
-        public Builder setDomain(String mDomain) {
-            this.mDomain = mDomain;
+        public Builder setDomain(String domain) {
+            mDomain = domain;
             return this;
         }
 
