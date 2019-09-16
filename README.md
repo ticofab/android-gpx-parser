@@ -1,28 +1,31 @@
-Android GPX Parser
-=======
+# Android GPX Parser
 
 A library to parse XML Gpx files, built for Android. The reference schema is the [Topografix GPX 1.1](http://www.topografix.com/GPX/1/1/).
 Far from complete - pull requests are welcome!
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--gpx--parser-green.svg?style=flat)](https://android-arsenal.com/details/1/2500)
 
-Download
---------
+## Projects using this library:
+
+* [Maplocs Cycling Route Planner](https://play.google.com/store/apps/details?id=abhiank.maplocs)
+
+_To have your project listed here, send me an email or open a PR._
+
+
+## Download
 
 Grab via Gradle:
 
 ```groovy
-api 'io.ticofab.androidgpxparser:parser:1.5.0'
-// compile 'io.ticofab.androidgpxparser:parser:1.4.0' - for gradle plugin < 3.0.0
+api 'io.ticofab.androidgpxparser:parser:1.6.0'
+// compile 'io.ticofab.androidgpxparser:parser:1.6.0' - for gradle plugin < 3.0.0
 ```
 
-Dependencies
-------------
+## Dependencies
 
 * [Joda DateTime for Android](https://github.com/dlew/joda-time-android)
 
-Usage
------
+## Usage
 
 Get a parser instance:
 
@@ -65,13 +68,11 @@ mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
   });
 ```
 
-Contribute
-----------
+## Contribute
 
 Contributions are welcome! Please check the [issues](https://github.com/ticofab/android-gpx-parser/issues) and open a pull request when done: you will have made the world a better place.
 
-License
---------
+## License
 
     Copyright 2015 - 2019 Fabio Tiriticco - Fabway
 
