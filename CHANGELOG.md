@@ -1,5 +1,10 @@
 # Change Log
 
+## Version 1.6.0 *(Sep 16th 2019)* 
+
+* Skipping the `extensions` tag from Metadata parsing - such tag is meant to include extra custom fields not mentioned in the GPX specs. Fixes [23](https://github.com/ticofab/android-gpx-parser/issues/23).
+* Added a first project using this library in production. Looking forward to add more!
+
 ## Version 1.5.0 *(Apr 18th 2019)* 
 
 * Parsing full Metadata information - thanks [Taneli Korry](https://github.com/tkorri)!
