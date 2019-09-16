@@ -73,48 +73,43 @@ public class Metadata {
         private Bounds mBounds;
         private String mExtensions;
 
-        public Builder setName(String mName) {
-            this.mName = mName;
+        public Builder setName(String name) {
+            mName = name;
             return this;
         }
 
-        public Builder setDesc(String mDesc) {
-            this.mDesc = mDesc;
+        public Builder setDesc(String desc) {
+            mDesc = desc;
             return this;
         }
 
-        public Builder setAuthor(Author mAuthor) {
-            this.mAuthor = mAuthor;
+        public Builder setAuthor(Author author) {
+            mAuthor = author;
             return this;
         }
 
-        public Builder setCopyright(Copyright mCopyright) {
-            this.mCopyright = mCopyright;
+        public Builder setCopyright(Copyright copyright) {
+            mCopyright = copyright;
             return this;
         }
 
-        public Builder setLink(Link mLink) {
-            this.mLink = mLink;
+        public Builder setLink(Link link) {
+            mLink = link;
             return this;
         }
 
-        public Builder setTime(DateTime mTime) {
-            this.mTime = mTime;
+        public Builder setTime(DateTime time) {
+            mTime = time;
             return this;
         }
 
-        public Builder setKeywords(String mKeywords) {
-            this.mKeywords = mKeywords;
+        public Builder setKeywords(String keywords) {
+            mKeywords = keywords;
             return this;
         }
 
-        public Builder setBounds(Bounds mBounds) {
-            this.mBounds = mBounds;
-            return this;
-        }
-
-        public Builder setExtensions(String mExtensions) {
-            this.mExtensions = mExtensions;
+        public Builder setBounds(Bounds bounds) {
+            mBounds = bounds;
             return this;
         }
 
