@@ -13,7 +13,11 @@ public abstract class Point {
     private final String mName;
     private final String mDesc;
     private final String mType;
-
+    private final Double mSpeed;
+    private final Double mMagVar;
+    private final Double mHdop;
+    private final Double mVdop;
+    private final Double mPdop;
     Point(Builder builder) {
         mLatitude = builder.mLatitude;
         mLongitude = builder.mLongitude;
@@ -22,6 +26,11 @@ public abstract class Point {
         mName = builder.mName;
         mDesc = builder.mDesc;
         mType = builder.mType;
+        mSpeed = builder.mSpeed;
+        mMagVar = builder.mMagVar;
+        mHdop = builder.mHdop;
+        mVdop = builder.mVdop;
+        mPdop = builder.mPdop;
     }
 
     /**
@@ -70,6 +79,41 @@ public abstract class Point {
         return mType;
     }
 
+    /**
+     * @return the speed
+     */
+    public Double getSpeed() {
+        return mSpeed;
+    }
+
+    /**
+     * @return the Magnetic Variation
+     */
+    public Double getMagVar() {
+        return mMagVar;
+    }
+
+    /**
+     * @return the hdop
+     */
+    public Double getHdop() {
+        return mHdop;
+    }
+
+    /**
+     * @return the vdop
+     */
+    public Double getVdop() {
+        return mVdop;
+    }
+
+    /**
+     * @return the pdop
+     */
+    public Double getPdop() {
+        return mPdop;
+    }
+
     public static abstract class Builder {
         private Double mLatitude;
         private Double mLongitude;
@@ -78,6 +122,11 @@ public abstract class Point {
         private String mName;
         private String mDesc;
         private String mType;
+        private Double mSpeed;
+        private Double mMagVar;
+        private Double mHdop;
+        private Double mVdop;
+        private Double mPdop;
 
         public Builder setLatitude(Double latitude) {
             mLatitude = latitude;
@@ -111,6 +160,31 @@ public abstract class Point {
 
         public Builder setType(String type) {
             mType = type;
+            return this;
+        }
+
+        public Builder setSpeed(Double speed) {
+            this.mSpeed = speed;
+            return this;
+        }
+
+        public Builder setMagVar(Double magVar) {
+            this.mMagVar = magVar;
+            return this;
+        }
+
+        public Builder setHdop(Double hdop) {
+            this.mHdop = hdop;
+            return this;
+        }
+
+        public Builder setVdop(Double vdop) {
+            this.mVdop = vdop;
+            return this;
+        }
+
+        public Builder setPdop(Double pdop) {
+            this.mPdop = pdop;
             return this;
         }
 

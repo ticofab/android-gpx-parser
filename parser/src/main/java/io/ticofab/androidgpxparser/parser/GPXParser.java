@@ -38,6 +38,11 @@ public class GPXParser {
     static private final String TAG_TRACK = "trk";
     static private final String TAG_SEGMENT = "trkseg";
     static private final String TAG_TRACK_POINT = "trkpt";
+    static private final String TAG_SPEED = "speed";
+    static private final String TAG_VDOP = "vdop";
+    static private final String TAG_HDOP = "hdop";
+    static private final String TAG_PDOP = "pdop";
+    static private final String TAG_MAGNETIC_VARIATION = "magvar";
     static private final String TAG_LAT = "lat";
     static private final String TAG_LON = "lon";
     static private final String TAG_ELEVATION = "ele";
@@ -322,6 +327,21 @@ public class GPXParser {
                 case TAG_TYPE:
                     builder.setType(readType(parser));
                     break;
+                case TAG_SPEED:
+                    builder.setSpeed(readSpeed(parser));
+                    break;
+                case TAG_HDOP:
+                    builder.setHdop(readHDOP(parser));
+                    break;
+                case TAG_VDOP:
+                    builder.setVdop(readVDOP(parser));
+                    break;
+                case TAG_PDOP:
+                    builder.setPdop(readPDOP(parser));
+                    break;
+                case TAG_MAGNETIC_VARIATION:
+                    builder.setMagVar(readMagVar(parser));
+                    break;
                 default:
                     skip(parser);
                     break;
@@ -469,6 +489,22 @@ public class GPXParser {
         return readString(parser, TAG_TYPE);
     }
 
+    private Double readSpeed(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readDouble(parser, TAG_SPEED);
+    }
+    private Double readHDOP(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readDouble(parser, TAG_HDOP);
+    }
+    private Double readVDOP(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readDouble(parser, TAG_VDOP);
+    }
+    private Double readPDOP(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readDouble(parser, TAG_PDOP);
+    }
+
+    private Double readMagVar(XmlPullParser parser) throws IOException, XmlPullParserException {
+        return readDouble(parser, TAG_MAGNETIC_VARIATION);
+    }
     private String readCmt(XmlPullParser parser) throws IOException, XmlPullParserException {
         return readString(parser, TAG_CMT);
     }
@@ -481,10 +517,14 @@ public class GPXParser {
     }
 
     private Double readElevation(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, namespace, TAG_ELEVATION);
-        Double ele = Double.valueOf(readText(parser));
-        parser.require(XmlPullParser.END_TAG, namespace, TAG_ELEVATION);
-        return ele;
+        return readDouble(parser,TAG_ELEVATION);
+    }
+
+    private Double readDouble(XmlPullParser parser, String tag) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, namespace, tag);
+        Double value = Double.valueOf(readText(parser));
+        parser.require(XmlPullParser.END_TAG, namespace, tag);
+        return value;
     }
 
     private DateTime readTime(XmlPullParser parser) throws IOException, XmlPullParserException {

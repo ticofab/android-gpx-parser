@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import io.ticofab.androidgpxparser.parser.domain.Author;
 import io.ticofab.androidgpxparser.parser.domain.Copyright;
@@ -21,6 +23,9 @@ import io.ticofab.androidgpxparser.parser.domain.Email;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Link;
 import io.ticofab.androidgpxparser.parser.domain.Metadata;
+import io.ticofab.androidgpxparser.parser.domain.Track;
+import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
+import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -148,5 +153,29 @@ public class GPXParserTest {
         assertEquals("Jane Doe", copyright.getAuthor());
         assertNull(copyright.getYear());
         assertNull(copyright.getLicense());
+    }
+
+    @Test
+    public void testPoint() throws IOException, XmlPullParserException {
+        InputStream input = InstrumentationRegistry.getContext().getAssets().open("testPoint.gpx");
+        Gpx gpx = new GPXParser().parse(input);
+        final Metadata metadata = gpx.getMetadata();
+        assertNotNull(metadata.getLink());
+        assertEquals(metadata.getLink().getText(),"Garmin International");
+        assertEquals(metadata.getLink().getHref(),"http://www.garmin.com");
+
+        List<Track> tracks = gpx.getTracks();
+        assertEquals(1,tracks.size());
+        List<TrackSegment> trackSegments = tracks.get(0).getTrackSegments();
+        assertEquals(1,trackSegments.size());
+        List<TrackPoint> trackPoints = trackSegments.get(0).getTrackPoints();
+        assertEquals(3,trackPoints.size());
+        for (TrackPoint points:trackPoints) {
+            assertEquals(34,points.getSpeed(),0);
+            assertEquals(89.33,points.getMagVar(),0);
+            assertEquals(21.67,points.getHdop(),0);
+            assertEquals(43.77,points.getVdop(),0);
+            assertEquals(2342.676,points.getPdop(),0);
+        }
     }
 }
