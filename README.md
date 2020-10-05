@@ -74,7 +74,7 @@ Contributions are welcome! Please check the [issues](https://github.com/ticofab/
 
 ## License
 
-    Copyright 2015 - 2019 Fabio Tiriticco - Fabway
+    Copyright 2015 - 2020 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
