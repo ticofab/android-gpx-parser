@@ -56,16 +56,16 @@ or you might want to fetch the Gpx track from a server and parse it. In that cas
 
 ```java
 mParser.parse("http://myserver.com/track.gpx", new GpxFetchedAndParsed() {
-      @Override
-      public void onGpxFetchedAndParsed(Gpx gpx) {
-          if (gpx == null) {
-              // error parsing track
-          } else {
-              // do something with the parsed track
-              // see included example app and tests
-          }
-      }
-  });
+    @Override
+    public void onGpxFetchedAndParsed(Gpx gpx) {
+        if (gpx == null) {
+            // error parsing track
+        } else {
+            // do something with the parsed track
+            // see included example app and tests
+        }
+    }
+});
 ```
 
 ## Contribute
