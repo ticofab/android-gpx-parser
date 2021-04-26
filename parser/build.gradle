@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/ticofab/android-gpx-parser'
     gitUrl = 'https://github.com/ticofab/android-gpx-parser.git'
 
-    libraryVersion = '1.6.0'
+    libraryVersion = '2.0.0'
 
     developerId = 'ticofab'
     developerName = 'Fabio Tiriticco'
@@ -36,7 +36,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 30
         versionCode 10
-        versionName "1.6.0"
+        versionName "2.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
