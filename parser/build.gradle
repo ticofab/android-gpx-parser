@@ -1,27 +1,20 @@
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'android-gpx-parser'
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            maven(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
 
-    publishedGroupId = 'io.ticofab.androidgpxparser'
-    libraryName = 'AndroidGpxParser'
-    artifact = 'parser'
-
-    libraryDescription = 'A simple XML parser for GPX files, built for Android.'
-
-    siteUrl = 'https://github.com/ticofab/android-gpx-parser'
-    gitUrl = 'https://github.com/ticofab/android-gpx-parser.git'
-
-    libraryVersion = '2.0.0'
-
-    developerId = 'ticofab'
-    developerName = 'Fabio Tiriticco'
-    developerEmail = 'fabio.europe@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'io.ticofab.androidgpxparser'
+                artifactId = 'parser'
+                version = '2.0.0'
+            }
+        }
+    }
 }
 
 android {
