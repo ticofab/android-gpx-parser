@@ -17,8 +17,8 @@ _To have your project listed here, send me an email or open a PR._
 Grab via Gradle:
 
 ```groovy
-api 'io.ticofab.androidgpxparser:parser:1.6.0'
-// compile 'io.ticofab.androidgpxparser:parser:1.6.0' - for gradle plugin < 3.0.0
+api 'io.ticofab.androidgpxparser:parser:2.0.0'
+// compile 'io.ticofab.androidgpxparser:parser:2.0.0' - for gradle plugin < 3.0.0
 ```
 
 ## Dependencies
@@ -51,6 +51,8 @@ if (parsedGpx == null) {
     // see included example app and tests
 }
 ```
+
+See the tests or the example app. 
 
 ## Contribute
 
