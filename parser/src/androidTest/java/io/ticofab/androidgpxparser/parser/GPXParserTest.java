@@ -1,13 +1,12 @@
 package io.ticofab.androidgpxparser.parser;
 
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.MediumTest;
-import android.support.test.runner.AndroidJUnit4;
+import android.content.res.AssetManager;
 
-import net.danlew.android.joda.JodaTimeAndroid;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.joda.time.DateTime;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xmlpull.v1.XmlPullParserException;
@@ -31,21 +30,16 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class GPXParserTest {
 
-    @Before
-    public void setUp() {
-        JodaTimeAndroid.init(InstrumentationRegistry.getTargetContext());
-    }
-
     @Test
     public void testShoresOfDerwentwater() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("shores-of-derwentwater.xml");
+        InputStream input = getAssets().open("shores-of-derwentwater.xml");
         Gpx gpx = new GPXParser().parse(input);
         assertNotNull(gpx); // testing that there is no crash, really
     }
 
     @Test
     public void testWadlbeisserExport() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("wadlbeisserExport.gpx");
+        InputStream input = getAssets().open("wadlbeisserExport.gpx");
         Gpx gpx = new GPXParser().parse(input);
         assertEquals(0, gpx.getTracks().size());
         assertEquals(2, gpx.getWayPoints().size());
@@ -55,7 +49,7 @@ public class GPXParserTest {
 
     @Test
     public void testGarminBaseCampExport() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport.gpx");
+        InputStream input = getAssets().open("garminBaseCampExport.gpx");
         Gpx gpx = new GPXParser().parse(input);
         assertEquals("http://www.garmin.com", gpx.getMetadata().getLink().getHref());
         assertEquals("Garmin International", gpx.getMetadata().getLink().getText());
@@ -74,20 +68,20 @@ public class GPXParserTest {
 
     @Test(expected = XmlPullParserException.class)
     public void testGarminBaseCampExportTruncated() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport-truncated.gpx");
+        InputStream input = getAssets().open("garminBaseCampExport-truncated.gpx");
         new GPXParser().parse(input);
     }
 
     @Test(expected = XmlPullParserException.class)
     public void testGarminBaseCampExportNoClosingTag() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("garminBaseCampExport-noclosingtag.gpx");
+        InputStream input = getAssets().open("garminBaseCampExport-noclosingtag.gpx");
         Gpx gpx = new GPXParser().parse(input);
         assertEquals(1, gpx.getTracks().size());
     }
 
     @Test
     public void testFullMetadataParsing() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("metadata-full.gpx");
+        InputStream input = getAssets().open("metadata-full.gpx");
         Gpx gpx = new GPXParser().parse(input);
 
         final Metadata metadata = gpx.getMetadata();
@@ -132,7 +126,7 @@ public class GPXParserTest {
 
     @Test
     public void testMinimalMetadataParsing() throws IOException, XmlPullParserException {
-        InputStream input = InstrumentationRegistry.getContext().getAssets().open("metadata-minimal.gpx");
+        InputStream input = getAssets().open("metadata-minimal.gpx");
         Gpx gpx = new GPXParser().parse(input);
 
         final Metadata metadata = gpx.getMetadata();
@@ -148,5 +142,9 @@ public class GPXParserTest {
         assertEquals("Jane Doe", copyright.getAuthor());
         assertNull(copyright.getYear());
         assertNull(copyright.getLicense());
+    }
+
+    public AssetManager getAssets() {
+        return InstrumentationRegistry.getInstrumentation().getContext().getAssets();
     }
 }
