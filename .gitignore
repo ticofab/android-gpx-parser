@@ -30,8 +30,6 @@ proguard/
 # Gradle directory
 .gradle
 
-gradle/wrapper/gradle-wrapper.properties
-
 # OS
 .DS_Store
 .idea/dictionaries
