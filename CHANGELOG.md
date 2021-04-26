@@ -1,5 +1,16 @@
 # Change Log
 
+## Version 2.0.0 *(Apr 26th 2021)* 
+
+Breaking change! Triggered by Bintray sunsetting JCenter, I seized the opportunity to
+* Remove the async version of the parser, which was using deprecated calls.
+* Bump up the minimum API level to 16 from 14.
+* Upgrade the Gradle plugin and all its machinery to the latest version.
+* Switch to the androidx libraries.
+* Move on from the deprecated InstrumentationRegistry.
+* Removed the useless test section of the example app.
+* Upgrade the Joda date library to the latest version.
+
 ## Version 1.6.0 *(Sep 16th 2019)* 
 
 * Skipping the `extensions` tag from Metadata parsing - such tag is meant to include extra custom fields not mentioned in the GPX specs. Fixes [23](https://github.com/ticofab/android-gpx-parser/issues/23).
