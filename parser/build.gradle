@@ -47,8 +47,8 @@ afterEvaluate {
                 from components.release
 
                 // You can then customize attributes of the publication as shown below.
-                groupId = 'io.ticofab.androidgpxparser'
-                artifactId = 'parser'
+                groupId = 'com.github.ticofab'
+                artifactId = 'android-gpx-parser'
                 version = '2.0.0'
             }
         }
