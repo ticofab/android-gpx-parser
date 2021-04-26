@@ -11,14 +11,22 @@ A library to parse XML Gpx files, built for Android. The reference schema is the
 
 _To have your project listed here, send me an email or open a PR._
 
-
 ## Download
 
-Grab via Gradle:
+Add the Jitpack repository to your root build file:
 
 ```groovy
-api 'io.ticofab.androidgpxparser:parser:2.0.0'
-// compile 'io.ticofab.androidgpxparser:parser:2.0.0' - for gradle plugin < 3.0.0
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+```groovy
+dependencies {
+    implementation 'com.github.ticofab:android-gpx-parser:2.0.0'
+}
 ```
 
 ## Dependencies
