@@ -14,7 +14,7 @@ public abstract class Point {
     private final String mDesc;
     private final String mType;
 
-    Point(Builder builder) {
+    protected Point(Builder builder) {
         mLatitude = builder.mLatitude;
         mLongitude = builder.mLongitude;
         mElevation = builder.mElevation;
