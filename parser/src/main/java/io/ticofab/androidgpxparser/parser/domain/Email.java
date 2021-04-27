@@ -6,8 +6,8 @@ public class Email {
     private String mDomain;
 
     private Email(Builder builder) {
-        this.mId = builder.mId;
-        this.mDomain = builder.mDomain;
+        this.mId = builder.getId();
+        this.mDomain = builder.getDomain();
     }
 
     public String getId() {
@@ -21,6 +21,10 @@ public class Email {
     public static class Builder {
         private String mId;
         private String mDomain;
+
+        public String getId() { return mId; }
+
+        public String getDomain() { return mDomain; }
 
         public Builder setId(String id) {
             mId = id;

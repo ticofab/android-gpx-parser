@@ -15,15 +15,15 @@ public class Metadata {
     private final String mExtensions;
 
     private Metadata(Metadata.Builder builder) {
-        mName = builder.mName;
-        mDesc = builder.mDesc;
-        mAuthor = builder.mAuthor;
-        mCopyright = builder.mCopyright;
-        mLink = builder.mLink;
-        mTime = builder.mTime;
-        mKeywords = builder.mKeywords;
-        mBounds = builder.mBounds;
-        mExtensions = builder.mExtensions;
+        mName = builder.getName();
+        mDesc = builder.getDesc();
+        mAuthor = builder.getAuthor();
+        mCopyright = builder.getCopyright();
+        mLink = builder.getLink();
+        mTime = builder.getTime();
+        mKeywords = builder.getKeywords();
+        mBounds = builder.getBounds();
+        mExtensions = builder.getExtensions();
     }
 
     public String getName() {
@@ -72,6 +72,24 @@ public class Metadata {
         private String mKeywords;
         private Bounds mBounds;
         private String mExtensions;
+
+        public String getName() { return mName; }
+
+        public String getDesc() { return mDesc; }
+
+        public Author getAuthor() { return mAuthor; }
+
+        public Copyright getCopyright() { return mCopyright; }
+
+        public Link getLink() { return mLink; }
+
+        public DateTime getTime() { return mTime; }
+
+        public String getKeywords() { return mKeywords; }
+
+        public Bounds getBounds() { return mBounds; }
+
+        public String getExtensions() { return mExtensions; }
 
         public Builder setName(String name) {
             mName = name;

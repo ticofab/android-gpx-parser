@@ -15,13 +15,13 @@ public abstract class Point {
     private final String mType;
 
     Point(Builder builder) {
-        mLatitude = builder.mLatitude;
-        mLongitude = builder.mLongitude;
-        mElevation = builder.mElevation;
-        mTime = builder.mTime;
-        mName = builder.mName;
-        mDesc = builder.mDesc;
-        mType = builder.mType;
+        mLatitude = builder.getLatitude();
+        mLongitude = builder.getLongitude();
+        mElevation = builder.getElevation();
+        mTime = builder.getTime();
+        mName = builder.getName();
+        mDesc = builder.getDesc();
+        mType = builder.getType();
     }
 
     /**
@@ -78,6 +78,20 @@ public abstract class Point {
         private String mName;
         private String mDesc;
         private String mType;
+
+        public Double getLatitude() { return mLatitude; }
+
+        public Double getLongitude() { return mLongitude; }
+
+        public Double getElevation() { return mElevation; }
+
+        public DateTime getTime() { return mTime; }
+
+        public String getName() { return mName; }
+
+        public String getDesc() { return mDesc; }
+
+        public String getType() { return mType; }
 
         public Builder setLatitude(Double latitude) {
             mLatitude = latitude;

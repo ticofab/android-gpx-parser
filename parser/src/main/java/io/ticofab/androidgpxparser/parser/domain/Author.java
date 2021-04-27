@@ -7,9 +7,9 @@ public class Author {
     private final Link mLink;
 
     private Author(Builder builder) {
-        this.mName = builder.mName;
-        this.mEmail = builder.mEmail;
-        this.mLink = builder.mLink;
+        this.mName = builder.getName();
+        this.mEmail = builder.getEmail();
+        this.mLink = builder.getLink();
     }
 
     public String getName() {
@@ -28,6 +28,12 @@ public class Author {
         private String mName;
         private Email mEmail;
         private Link mLink;
+
+        public String getName() { return mName; }
+
+        public Email getEmail() { return mEmail; }
+
+        public Link getLink() { return mLink; }
 
         public Builder setName(String name) {
             mName = name;

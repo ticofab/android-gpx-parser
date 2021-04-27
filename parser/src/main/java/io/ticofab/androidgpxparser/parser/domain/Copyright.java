@@ -7,9 +7,9 @@ public class Copyright {
     private final String mLicense;
 
     private Copyright(Builder builder) {
-        mAuthor = builder.mAuthor;
-        mYear = builder.mYear;
-        mLicense = builder.mLicense;
+        mAuthor = builder.getAuthor();
+        mYear = builder.getYear();
+        mLicense = builder.getLicense();
     }
 
     public String getAuthor() {
@@ -28,6 +28,12 @@ public class Copyright {
         private String mAuthor;
         private Integer mYear;
         private String mLicense;
+
+        public String getAuthor() { return mAuthor; }
+
+        public Integer getYear() { return mYear; }
+
+        public String getLicense() { return mLicense; }
 
         public Builder setAuthor(String author) {
             mAuthor = author;

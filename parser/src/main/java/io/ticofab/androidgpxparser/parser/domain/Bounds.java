@@ -8,10 +8,10 @@ public class Bounds {
     private final Double mMaxLon;
 
     private Bounds(Builder builder) {
-        mMinLat = builder.mMinLat;
-        mMinLon = builder.mMinLon;
-        mMaxLat = builder.mMaxLat;
-        mMaxLon = builder.mMaxLon;
+        mMinLat = builder.getMinLat();
+        mMinLon = builder.getMinLon();
+        mMaxLat = builder.getMaxLat();
+        mMaxLon = builder.getMaxLon();
     }
 
     public Double getMinLat() {
@@ -35,6 +35,14 @@ public class Bounds {
         private Double mMinLon;
         private Double mMaxLat;
         private Double mMaxLon;
+
+        public Double getMinLat() { return mMinLat; }
+
+        public Double getMinLon() { return mMinLon; }
+
+        public Double getMaxLat() { return mMaxLat; }
+
+        public Double getMaxLon() { return mMaxLon; }
 
         public Builder setMinLat(Double minLat) {
             mMinLat = minLat;

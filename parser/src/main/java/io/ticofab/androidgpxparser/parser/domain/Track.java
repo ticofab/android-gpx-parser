@@ -15,14 +15,14 @@ public class Track {
     private final String mTrackType;
 
     private Track(Builder builder) {
-        mTrackName = builder.mTrackName;
-        mTrackDesc = builder.mTrackDesc;
-        mTrackCmt = builder.mTrackCmt;
-        mTrackSrc = builder.mTrackSrc;
-        mTrackNumber = builder.mTrackNumber;
-        mTrackSegments = Collections.unmodifiableList(new ArrayList<>(builder.mTrackSegments));
-        mTrackLink = builder.mTrackLink;
-        mTrackType = builder.mTrackType;
+        mTrackName = builder.getTrackName();
+        mTrackDesc = builder.getTrackDesc();
+        mTrackCmt = builder.getTrackCmt();
+        mTrackSrc = builder.getTrackSrc();
+        mTrackNumber = builder.getTrackNumber();
+        mTrackSegments = Collections.unmodifiableList(new ArrayList<>(builder.getTrackSegments()));
+        mTrackLink = builder.getTrackLink();
+        mTrackType = builder.getTrackType();
     }
 
     public String getTrackName() {
@@ -66,6 +66,22 @@ public class Track {
         private Integer mTrackNumber;
         private Link mTrackLink;
         private String mTrackType;
+
+        public String getTrackName() { return mTrackName; }
+
+        public List<TrackSegment> getTrackSegments() { return mTrackSegments; }
+
+        public String getTrackDesc() { return mTrackDesc; }
+
+        public String getTrackCmt() { return mTrackCmt; }
+
+        public String getTrackSrc() { return mTrackSrc; }
+
+        public Integer getTrackNumber() { return mTrackNumber; }
+
+        public Link getTrackLink() { return mTrackLink; }
+
+        public String getTrackType() { return mTrackType; }
 
         public Builder setTrackName(String trackName) {
             mTrackName = trackName;

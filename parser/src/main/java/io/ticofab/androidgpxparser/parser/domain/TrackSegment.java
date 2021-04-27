@@ -8,7 +8,7 @@ public class TrackSegment {
     private final List<TrackPoint> mTrackPoints;
 
     private TrackSegment(Builder builder) {
-        mTrackPoints = Collections.unmodifiableList(new ArrayList<>(builder.mTrackPoints));
+        mTrackPoints = Collections.unmodifiableList(new ArrayList<>(builder.getTrackPoints()));
     }
 
     public List<TrackPoint> getTrackPoints() {
@@ -17,6 +17,8 @@ public class TrackSegment {
 
     public static class Builder {
         private List<TrackPoint> mTrackPoints;
+
+        public List<TrackPoint> getTrackPoints() { return mTrackPoints; }
 
         public Builder setTrackPoints(List<TrackPoint> trackPoints) {
             mTrackPoints = trackPoints;

@@ -13,12 +13,12 @@ public class Gpx {
     private final List<Track> mTracks;
 
     private Gpx(Builder builder) {
-        mVersion = builder.mVersion;
-        mCreator = builder.mCreator;
-        mMetadata = builder.mMetadata;
-        mWayPoints = Collections.unmodifiableList(new ArrayList<>(builder.mWayPoints));
-        mRoutes = Collections.unmodifiableList(new ArrayList<>(builder.mRoutes));
-        mTracks = Collections.unmodifiableList(new ArrayList<>(builder.mTracks));
+        mVersion = builder.getVersion();
+        mCreator = builder.getCreator();
+        mMetadata = builder.getMetadata();
+        mWayPoints = Collections.unmodifiableList(new ArrayList<>(builder.getWayPoints()));
+        mRoutes = Collections.unmodifiableList(new ArrayList<>(builder.getRoutes()));
+        mTracks = Collections.unmodifiableList(new ArrayList<>(builder.getTracks()));
     }
 
     public String getVersion() { return mVersion; }
@@ -48,6 +48,18 @@ public class Gpx {
         private String mVersion;
         private String mCreator;
         private Metadata mMetadata;
+
+        public List<WayPoint> getWayPoints() { return mWayPoints; }
+
+        public List<Route> getRoutes() { return mRoutes; }
+
+        public List<Track> getTracks() { return mTracks; }
+
+        public String getVersion() { return mVersion; }
+
+        public String getCreator() { return mCreator; }
+
+        public Metadata getMetadata() { return mMetadata; }
 
         public Builder setTracks(List<Track> tracks) {
             mTracks = tracks;

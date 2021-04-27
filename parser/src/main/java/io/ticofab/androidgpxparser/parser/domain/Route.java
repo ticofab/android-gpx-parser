@@ -15,14 +15,14 @@ public class Route {
     private final String mRouteType;
 
     private Route(Builder builder) {
-        mRoutePoints = Collections.unmodifiableList(new ArrayList<>(builder.mRoutePoints));
-        mRouteName = builder.mRouteName;
-        mRouteDesc = builder.mRouteDesc;
-        mRouteCmt = builder.mRouteCmt;
-        mRouteSrc = builder.mRouteSrc;
-        mRouteNumber = builder.mRouteNumber;
-        mRouteLink = builder.mRouteLink;
-        mRouteType = builder.mRouteType;
+        mRoutePoints = Collections.unmodifiableList(new ArrayList<>(builder.getRoutePoints()));
+        mRouteName = builder.getRouteName();
+        mRouteDesc = builder.getRouteDesc();
+        mRouteCmt = builder.getRouteCmt();
+        mRouteSrc = builder.getRouteSrc();
+        mRouteNumber = builder.getRouteNumber();
+        mRouteLink = builder.getRouteLink();
+        mRouteType = builder.getRouteType();
     }
 
     public List<RoutePoint> getRoutePoints() {
@@ -66,6 +66,22 @@ public class Route {
         private Integer mRouteNumber;
         private Link mRouteLink;
         private String mRouteType;
+
+        public List<RoutePoint> getRoutePoints() { return mRoutePoints; }
+
+        public String getRouteName() { return mRouteName; }
+
+        public String getRouteDesc() { return mRouteDesc; }
+
+        public String getRouteCmt() { return mRouteCmt; }
+
+        public String getRouteSrc() { return mRouteSrc; }
+
+        public Integer getRouteNumber() { return mRouteNumber; }
+
+        public Link getRouteLink() { return mRouteLink; }
+
+        public String getRouteType() { return mRouteType; }
 
         public Builder setRoutePoints(List<RoutePoint> routePoints) {
             mRoutePoints = routePoints;

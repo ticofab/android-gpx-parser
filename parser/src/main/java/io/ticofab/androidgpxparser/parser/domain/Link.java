@@ -11,9 +11,9 @@ public class Link {
     private final String mLinkType;
 
     private Link(Builder builder) {
-        mLinkHref = builder.mLinkHref;
-        mLinkText = builder.mLinkText;
-        mLinkType = builder.mLinkType;
+        mLinkHref = builder.getLinkHref();
+        mLinkText = builder.getLinkText();
+        mLinkType = builder.getLinkType();
     }
 
     public String getHref() {
@@ -36,6 +36,12 @@ public class Link {
         public Builder() {
 
         }
+
+        public String getLinkHref() { return mLinkHref; }
+
+        public String getLinkText() { return mLinkText; }
+
+        public String getLinkType() { return mLinkType; }
 
         public Builder setLinkHref(String linkHref) {
             mLinkHref = linkHref;
