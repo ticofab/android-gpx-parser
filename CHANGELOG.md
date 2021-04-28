@@ -4,7 +4,7 @@
 
 Breaking change! Triggered by Bintray sunsetting JCenter, I seized the opportunity to
 * Remove the async version of the parser, which was using deprecated calls.
-* Bump up the minimum API level to 16 from 14.
+* Bump up the minimum API level from 14 to 16.
 * Upgrade the Gradle plugin and all its machinery to the latest version.
 * Switch to the androidx libraries.
 * Move on from the deprecated InstrumentationRegistry.
