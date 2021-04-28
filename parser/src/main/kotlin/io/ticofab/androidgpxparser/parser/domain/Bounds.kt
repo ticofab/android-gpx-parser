@@ -1,10 +1,10 @@
 package io.ticofab.androidgpxparser.parser.domain
 
 class Bounds private constructor(builder: Builder) {
-    val minLat: Double?
-    val minLon: Double?
-    val maxLat: Double?
-    val maxLon: Double?
+    val minLat = builder.minLat
+    val minLon = builder.minLon
+    val maxLat = builder.maxLat
+    val maxLon = builder.maxLon
 
     class Builder {
         var minLat: Double? = null
@@ -16,35 +16,14 @@ class Bounds private constructor(builder: Builder) {
         var maxLon: Double? = null
             private set
 
-        fun setMinLat(minLat: Double?): Builder {
-            this.minLat = minLat
-            return this
-        }
+        fun setMinLat(minLat: Double?) = apply { this.minLat = minLat }
 
-        fun setMinLon(minLon: Double?): Builder {
-            this.minLon = minLon
-            return this
-        }
+        fun setMinLon(minLon: Double?) = apply { this.minLon = minLon }
 
-        fun setMaxLat(maxLat: Double?): Builder {
-            this.maxLat = maxLat
-            return this
-        }
+        fun setMaxLat(maxLat: Double?) = apply { this.maxLat = maxLat }
 
-        fun setMaxLon(maxLon: Double?): Builder {
-            this.maxLon = maxLon
-            return this
-        }
+        fun setMaxLon(maxLon: Double?) = apply { this.maxLon = maxLon }
 
-        fun build(): Bounds {
-            return Bounds(this)
-        }
-    }
-
-    init {
-        minLat = builder.minLat
-        minLon = builder.minLon
-        maxLat = builder.maxLat
-        maxLon = builder.maxLon
+        fun build() = Bounds(this)
     }
 }

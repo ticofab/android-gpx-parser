@@ -1,9 +1,9 @@
 package io.ticofab.androidgpxparser.parser.domain
 
 class Author private constructor(builder: Builder) {
-    val name: String?
-    val email: Email?
-    val link: Link?
+    val name = builder.name
+    val email = builder.email
+    val link = builder.link
 
     class Builder {
         var name: String? = null
@@ -13,29 +13,12 @@ class Author private constructor(builder: Builder) {
         var link: Link? = null
             private set
 
-        fun setName(name: String?): Builder {
-            this.name = name
-            return this
-        }
+        fun setName(name: String?) = apply { this.name = name }
 
-        fun setEmail(email: Email?): Builder {
-            this.email = email
-            return this
-        }
+        fun setEmail(email: Email?) = apply { this.email = email }
 
-        fun setLink(link: Link?): Builder {
-            this.link = link
-            return this
-        }
+        fun setLink(link: Link?) = apply { this.link = link }
 
-        fun build(): Author {
-            return Author(this)
-        }
-    }
-
-    init {
-        name = builder.name
-        email = builder.email
-        link = builder.link
+        fun build() = Author(this)
     }
 }

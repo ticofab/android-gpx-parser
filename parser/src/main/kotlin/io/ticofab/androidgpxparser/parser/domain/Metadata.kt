@@ -3,15 +3,15 @@ package io.ticofab.androidgpxparser.parser.domain
 import org.joda.time.DateTime
 
 class Metadata private constructor(builder: Builder) {
-    val name: String?
-    val desc: String?
-    val author: Author?
-    val copyright: Copyright?
-    val link: Link?
-    val time: DateTime?
-    val keywords: String?
-    val bounds: Bounds?
-    val extensions: String?
+    val name = builder.name
+    val desc = builder.desc
+    val author = builder.author
+    val copyright = builder.copyright
+    val link = builder.link
+    val time = builder.time
+    val keywords = builder.keywords
+    val bounds = builder.bounds
+    val extensions = builder.extensions
 
     class Builder {
         var name: String? = null
@@ -31,60 +31,23 @@ class Metadata private constructor(builder: Builder) {
         var bounds: Bounds? = null
             private set
         val extensions: String? = null
-        fun setName(name: String?): Builder {
-            this.name = name
-            return this
-        }
 
-        fun setDesc(desc: String?): Builder {
-            this.desc = desc
-            return this
-        }
+        fun setName(name: String?) = apply { this.name = name }
 
-        fun setAuthor(author: Author?): Builder {
-            this.author = author
-            return this
-        }
+        fun setDesc(desc: String?) = apply { this.desc = desc }
 
-        fun setCopyright(copyright: Copyright?): Builder {
-            this.copyright = copyright
-            return this
-        }
+        fun setAuthor(author: Author?) = apply { this.author = author }
 
-        fun setLink(link: Link?): Builder {
-            this.link = link
-            return this
-        }
+        fun setCopyright(copyright: Copyright?) = apply { this.copyright = copyright }
 
-        fun setTime(time: DateTime?): Builder {
-            this.time = time
-            return this
-        }
+        fun setLink(link: Link?) = apply { this.link = link }
 
-        fun setKeywords(keywords: String?): Builder {
-            this.keywords = keywords
-            return this
-        }
+        fun setTime(time: DateTime?) = apply { this.time = time }
 
-        fun setBounds(bounds: Bounds?): Builder {
-            this.bounds = bounds
-            return this
-        }
+        fun setKeywords(keywords: String?) = apply { this.keywords = keywords }
 
-        fun build(): Metadata {
-            return Metadata(this)
-        }
-    }
+        fun setBounds(bounds: Bounds?) = apply { this.bounds = bounds }
 
-    init {
-        name = builder.name
-        desc = builder.desc
-        author = builder.author
-        copyright = builder.copyright
-        link = builder.link
-        time = builder.time
-        keywords = builder.keywords
-        bounds = builder.bounds
-        extensions = builder.extensions
+        fun build() = Metadata(this)
     }
 }

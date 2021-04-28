@@ -1,27 +1,38 @@
 package io.ticofab.androidgpxparser.parser
 
 import android.util.Xml
-import io.ticofab.androidgpxparser.parser.domain.*
+
 import org.joda.time.DateTime
 import org.joda.time.format.ISODateTimeFormat
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
+
 import java.io.IOException
 import java.io.InputStream
-import java.util.*
+
+import io.ticofab.androidgpxparser.parser.domain.Author
+import io.ticofab.androidgpxparser.parser.domain.Bounds
+import io.ticofab.androidgpxparser.parser.domain.Copyright
+import io.ticofab.androidgpxparser.parser.domain.Email
+import io.ticofab.androidgpxparser.parser.domain.Gpx
+import io.ticofab.androidgpxparser.parser.domain.Link
+import io.ticofab.androidgpxparser.parser.domain.Metadata
+import io.ticofab.androidgpxparser.parser.domain.Point
+import io.ticofab.androidgpxparser.parser.domain.Route
+import io.ticofab.androidgpxparser.parser.domain.RoutePoint
+import io.ticofab.androidgpxparser.parser.domain.Track
+import io.ticofab.androidgpxparser.parser.domain.TrackPoint
+import io.ticofab.androidgpxparser.parser.domain.TrackSegment
+import io.ticofab.androidgpxparser.parser.domain.WayPoint
 
 class GPXParser {
     @Throws(XmlPullParserException::class, IOException::class)
-    fun parse(`in`: InputStream): Gpx {
-        return try {
-            val parser = Xml.newPullParser()
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, true)
-            parser.setInput(`in`, null)
-            parser.nextTag()
-            readGpx(parser)
-        } finally {
-            `in`.close()
-        }
+    fun parse(stream: InputStream) = stream.use {
+        val parser = Xml.newPullParser()
+        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, true)
+        parser.setInput(it, null)
+        parser.nextTag()
+        readGpx(parser)
     }
 
     @Throws(XmlPullParserException::class, IOException::class)
@@ -37,8 +48,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_METADATA -> builder.setMetadata(readMetadata(parser))
                 TAG_WAY_POINT -> wayPoints.add(readWayPoint(parser))
                 TAG_ROUTE -> routes.add(readRoute(parser))
@@ -65,8 +75,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_NAME -> trackBuilder.setTrackName(readName(parser))
                 TAG_SEGMENT -> segments.add(readSegment(parser))
                 TAG_DESC -> trackBuilder.setTrackDesc(readDesc(parser))
@@ -93,8 +102,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_TEXT -> linkBuilder.setLinkText(readString(parser, TAG_TEXT))
                 TAG_TYPE -> linkBuilder.setLinkType(readString(parser, TAG_TYPE))
                 else -> skip(parser)
@@ -127,11 +135,9 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            if (TAG_TRACK_POINT == name) {
-                points.add(readTrackPoint(parser))
-            } else {
-                skip(parser)
+            when (parser.name) {
+                TAG_TRACK_POINT -> points.add(readTrackPoint(parser))
+                else -> skip(parser)
             }
         }
         parser.require(XmlPullParser.END_TAG, namespace, TAG_SEGMENT)
@@ -149,8 +155,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_ROUTE_POINT -> points.add(readRoutePoint(parser))
                 TAG_NAME -> routeBuilder.setRouteName(readName(parser))
                 TAG_DESC -> routeBuilder.setRouteDesc(readDesc(parser))
@@ -184,8 +189,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_NAME -> builder.setName(readName(parser))
                 TAG_DESC -> builder.setDesc(readDesc(parser))
                 TAG_ELEVATION -> builder.setElevation(readElevation(parser))
@@ -206,8 +210,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_NAME -> metadataBuilder.setName(readName(parser))
                 TAG_DESC -> metadataBuilder.setDesc(readDesc(parser))
                 TAG_AUTHOR -> metadataBuilder.setAuthor(readAuthor(parser))
@@ -232,8 +235,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_NAME -> authorBuilder.setName(readString(parser, TAG_NAME))
                 TAG_EMAIL -> authorBuilder.setEmail(readEmail(parser))
                 TAG_LINK -> authorBuilder.setLink(readLink(parser))
@@ -266,8 +268,7 @@ class GPXParser {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            val name = parser.name
-            when (name) {
+            when (parser.name) {
                 TAG_YEAR -> copyrightBuilder.setYear(readYear(parser))
                 TAG_LICENSE -> copyrightBuilder.setLicense(readString(parser, TAG_LICENSE))
                 else -> skip(parser)
@@ -278,39 +279,28 @@ class GPXParser {
     }
 
     @Throws(XmlPullParserException::class, IOException::class)
-    private fun readWayPoint(parser: XmlPullParser): WayPoint {
-        return readPoint(WayPoint.Builder(), parser, TAG_WAY_POINT) as WayPoint
-    }
+    private fun readWayPoint(parser: XmlPullParser) =
+            readPoint(WayPoint.Builder(), parser, TAG_WAY_POINT) as WayPoint
 
     @Throws(IOException::class, XmlPullParserException::class)
-    private fun readTrackPoint(parser: XmlPullParser): TrackPoint {
-        return readPoint(TrackPoint.Builder(), parser, TAG_TRACK_POINT) as TrackPoint
-    }
+    private fun readTrackPoint(parser: XmlPullParser) =
+            readPoint(TrackPoint.Builder(), parser, TAG_TRACK_POINT) as TrackPoint
 
     @Throws(IOException::class, XmlPullParserException::class)
-    private fun readRoutePoint(parser: XmlPullParser): RoutePoint {
-        return readPoint(RoutePoint.Builder(), parser, TAG_ROUTE_POINT) as RoutePoint
-    }
+    private fun readRoutePoint(parser: XmlPullParser) =
+            readPoint(RoutePoint.Builder(), parser, TAG_ROUTE_POINT) as RoutePoint
 
     @Throws(IOException::class, XmlPullParserException::class)
-    private fun readName(parser: XmlPullParser): String {
-        return readString(parser, TAG_NAME)
-    }
+    private fun readName(parser: XmlPullParser) = readString(parser, TAG_NAME)
 
     @Throws(IOException::class, XmlPullParserException::class)
-    private fun readDesc(parser: XmlPullParser): String {
-        return readString(parser, TAG_DESC)
-    }
+    private fun readDesc(parser: XmlPullParser) = readString(parser, TAG_DESC)
 
     @Throws(IOException::class, XmlPullParserException::class)
-    private fun readType(parser: XmlPullParser): String {
-        return readString(parser, TAG_TYPE)
-    }
+    private fun readType(parser: XmlPullParser) = readString(parser, TAG_TYPE)
 
     @Throws(IOException::class, XmlPullParserException::class)
-    private fun readCmt(parser: XmlPullParser): String {
-        return readString(parser, TAG_CMT)
-    }
+    private fun readCmt(parser: XmlPullParser) = readString(parser, TAG_CMT)
 
     @Throws(IOException::class, XmlPullParserException::class)
     private fun readString(parser: XmlPullParser, tag: String): String {
@@ -381,9 +371,8 @@ class GPXParser {
         }
     }
 
-    private fun loopMustContinue(next: Int): Boolean {
-        return next != XmlPullParser.END_TAG && next != XmlPullParser.END_DOCUMENT
-    }
+    private fun loopMustContinue(next: Int) =
+            next != XmlPullParser.END_TAG && next != XmlPullParser.END_DOCUMENT
 
     companion object {
         private const val TAG_GPX = "gpx"

@@ -1,14 +1,12 @@
 package io.ticofab.androidgpxparser.parser.domain
 
-import java.util.*
-
 class Gpx private constructor(builder: Builder) {
-    val version: String?
-    val creator: String?
-    val metadata: Metadata?
-    val wayPoints: List<WayPoint>
-    val routes: List<Route>
-    val tracks: List<Track>
+    val version = builder.version
+    val creator = builder.creator
+    val metadata = builder.metadata
+    val wayPoints = builder.wayPoints?.toList()
+    val routes = builder.routes?.toList()
+    val tracks = builder.tracks?.toList()
 
     class Builder {
         var wayPoints: List<WayPoint>? = null
@@ -24,47 +22,18 @@ class Gpx private constructor(builder: Builder) {
         var metadata: Metadata? = null
             private set
 
-        fun setTracks(tracks: List<Track>?): Builder {
-            this.tracks = tracks
-            return this
-        }
+        fun setTracks(tracks: List<Track>?) = apply { this.tracks = tracks }
 
-        fun setWayPoints(wayPoints: List<WayPoint>?): Builder {
-            this.wayPoints = wayPoints
-            return this
-        }
+        fun setWayPoints(wayPoints: List<WayPoint>?) = apply { this.wayPoints = wayPoints }
 
-        fun setRoutes(routes: List<Route>?): Builder {
-            this.routes = routes
-            return this
-        }
+        fun setRoutes(routes: List<Route>?) = apply { this.routes = routes }
 
-        fun setVersion(version: String?): Builder {
-            this.version = version
-            return this
-        }
+        fun setVersion(version: String?) = apply { this.version = version }
 
-        fun setCreator(creator: String?): Builder {
-            this.creator = creator
-            return this
-        }
+        fun setCreator(creator: String?) = apply { this.creator = creator }
 
-        fun setMetadata(mMetadata: Metadata?): Builder {
-            metadata = mMetadata
-            return this
-        }
+        fun setMetadata(mMetadata: Metadata?) = apply { metadata = mMetadata }
 
-        fun build(): Gpx {
-            return Gpx(this)
-        }
-    }
-
-    init {
-        version = builder.version
-        creator = builder.creator
-        metadata = builder.metadata
-        wayPoints = Collections.unmodifiableList(ArrayList(builder.wayPoints))
-        routes = Collections.unmodifiableList(ArrayList(builder.routes))
-        tracks = Collections.unmodifiableList(ArrayList(builder.tracks))
+        fun build() = Gpx(this)
     }
 }

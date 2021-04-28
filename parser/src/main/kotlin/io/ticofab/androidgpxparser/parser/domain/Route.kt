@@ -1,16 +1,14 @@
 package io.ticofab.androidgpxparser.parser.domain
 
-import java.util.*
-
 class Route private constructor(builder: Builder) {
-    val routePoints: List<RoutePoint>
-    val routeName: String?
-    val routeDesc: String?
-    val routeCmt: String?
-    val routeSrc: String?
-    val routeNumber: Int?
-    val routeLink: Link?
-    val routeType: String?
+    val routePoints = builder.routePoints?.toList()
+    val routeName = builder.routeName
+    val routeDesc = builder.routeDesc
+    val routeCmt = builder.routeCmt
+    val routeSrc = builder.routeSrc
+    val routeNumber = builder.routeNumber
+    val routeLink = builder.routeLink
+    val routeType = builder.routeType
 
     class Builder {
         var routePoints: List<RoutePoint>? = null
@@ -30,59 +28,22 @@ class Route private constructor(builder: Builder) {
         var routeType: String? = null
             private set
 
-        fun setRoutePoints(routePoints: List<RoutePoint>?): Builder {
-            this.routePoints = routePoints
-            return this
-        }
+        fun setRoutePoints(routePoints: List<RoutePoint>?) = apply { this.routePoints = routePoints }
 
-        fun setRouteName(routeName: String?): Builder {
-            this.routeName = routeName
-            return this
-        }
+        fun setRouteName(routeName: String?) = apply { this.routeName = routeName }
 
-        fun setRouteDesc(routeDesc: String?): Builder {
-            this.routeDesc = routeDesc
-            return this
-        }
+        fun setRouteDesc(routeDesc: String?) = apply { this.routeDesc = routeDesc }
 
-        fun setRouteCmt(routeCmt: String?): Builder {
-            this.routeCmt = routeCmt
-            return this
-        }
+        fun setRouteCmt(routeCmt: String?) = apply { this.routeCmt = routeCmt }
 
-        fun setRouteSrc(routeSrc: String?): Builder {
-            this.routeSrc = routeSrc
-            return this
-        }
+        fun setRouteSrc(routeSrc: String?) = apply { this.routeSrc = routeSrc }
 
-        fun setRouteNumber(routeNumber: Int?): Builder {
-            this.routeNumber = routeNumber
-            return this
-        }
+        fun setRouteNumber(routeNumber: Int?) = apply { this.routeNumber = routeNumber }
 
-        fun setRouteLink(routeLink: Link?): Builder {
-            this.routeLink = routeLink
-            return this
-        }
+        fun setRouteLink(routeLink: Link?) = apply { this.routeLink = routeLink }
 
-        fun setRouteType(routeType: String?): Builder {
-            this.routeType = routeType
-            return this
-        }
+        fun setRouteType(routeType: String?) = apply { this.routeType = routeType }
 
-        fun build(): Route {
-            return Route(this)
-        }
-    }
-
-    init {
-        routePoints = Collections.unmodifiableList(ArrayList(builder.routePoints))
-        routeName = builder.routeName
-        routeDesc = builder.routeDesc
-        routeCmt = builder.routeCmt
-        routeSrc = builder.routeSrc
-        routeNumber = builder.routeNumber
-        routeLink = builder.routeLink
-        routeType = builder.routeType
+        fun build() = Route(this)
     }
 }

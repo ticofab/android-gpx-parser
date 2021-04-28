@@ -9,33 +9,33 @@ abstract class Point internal constructor(builder: Builder) {
     /**
      * @return the latitude in degrees
      */
-    val latitude: Double?
+    val latitude = builder.latitude
 
     /**
      * @return the longitude in degrees
      */
-    val longitude: Double?
+    val longitude = builder.longitude
 
     /**
      * @return the elevation in meters
      */
-    val elevation: Double?
-    val time: DateTime?
+    val elevation = builder.elevation
+    val time = builder.time
 
     /**
      * @return the point name
      */
-    val name: String?
+    val name = builder.name
 
     /**
      * @return the description
      */
-    val desc: String?
+    val desc = builder.desc
 
     /**
      * @return the type (category)
      */
-    val type: String?
+    val type = builder.type
 
     abstract class Builder {
         var latitude: Double? = null
@@ -53,51 +53,20 @@ abstract class Point internal constructor(builder: Builder) {
         var type: String? = null
             private set
 
-        fun setLatitude(latitude: Double?): Builder {
-            this.latitude = latitude
-            return this
-        }
+        fun setLatitude(latitude: Double?) = apply { this.latitude = latitude }
 
-        fun setLongitude(longitude: Double?): Builder {
-            this.longitude = longitude
-            return this
-        }
+        fun setLongitude(longitude: Double?) = apply { this.longitude = longitude }
 
-        fun setElevation(elevation: Double?): Builder {
-            this.elevation = elevation
-            return this
-        }
+        fun setElevation(elevation: Double?) = apply { this.elevation = elevation }
 
-        fun setTime(time: DateTime?): Builder {
-            this.time = time
-            return this
-        }
+        fun setTime(time: DateTime?) = apply { this.time = time }
 
-        fun setName(mame: String?): Builder {
-            name = mame
-            return this
-        }
+        fun setName(mame: String?) = apply { name = mame }
 
-        fun setDesc(desc: String?): Builder {
-            this.desc = desc
-            return this
-        }
+        fun setDesc(desc: String?) = apply { this.desc = desc }
 
-        fun setType(type: String?): Builder {
-            this.type = type
-            return this
-        }
+        fun setType(type: String?) = apply { this.type = type }
 
         abstract fun build(): Point
-    }
-
-    init {
-        latitude = builder.latitude
-        longitude = builder.longitude
-        elevation = builder.elevation
-        time = builder.time
-        name = builder.name
-        desc = builder.desc
-        type = builder.type
     }
 }

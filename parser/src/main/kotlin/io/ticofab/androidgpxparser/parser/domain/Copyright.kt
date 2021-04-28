@@ -1,9 +1,9 @@
 package io.ticofab.androidgpxparser.parser.domain
 
 class Copyright private constructor(builder: Builder) {
-    val author: String?
-    val year: Int?
-    val license: String?
+    val author = builder.author
+    val year = builder.year
+    val license = builder.license
 
     class Builder {
         var author: String? = null
@@ -13,29 +13,12 @@ class Copyright private constructor(builder: Builder) {
         var license: String? = null
             private set
 
-        fun setAuthor(author: String?): Builder {
-            this.author = author
-            return this
-        }
+        fun setAuthor(author: String?) = apply { this.author = author }
 
-        fun setYear(year: Int?): Builder {
-            this.year = year
-            return this
-        }
+        fun setYear(year: Int?) = apply { this.year = year }
 
-        fun setLicense(license: String?): Builder {
-            this.license = license
-            return this
-        }
+        fun setLicense(license: String?) = apply { this.license = license }
 
-        fun build(): Copyright {
-            return Copyright(this)
-        }
-    }
-
-    init {
-        author = builder.author
-        year = builder.year
-        license = builder.license
+        fun build() = Copyright(this)
     }
 }

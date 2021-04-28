@@ -5,8 +5,6 @@ package io.ticofab.androidgpxparser.parser.domain
  */
 class RoutePoint private constructor(builder: Builder) : Point(builder) {
     class Builder : Point.Builder() {
-        override fun build(): RoutePoint {
-            return RoutePoint(this)
-        }
+        override fun build() = RoutePoint(this)
     }
 }

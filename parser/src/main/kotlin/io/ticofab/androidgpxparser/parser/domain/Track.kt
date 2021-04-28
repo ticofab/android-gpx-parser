@@ -1,16 +1,14 @@
 package io.ticofab.androidgpxparser.parser.domain
 
-import java.util.*
-
 class Track private constructor(builder: Builder) {
-    val trackName: String?
-    val trackSegments: List<TrackSegment>
-    val trackDesc: String?
-    val trackCmt: String?
-    val trackSrc: String?
-    val trackNumber: Int?
-    val trackLink: Link?
-    val trackType: String?
+    val trackName = builder.trackName
+    val trackSegments = builder.trackSegments?.toList()
+    val trackDesc = builder.trackDesc
+    val trackCmt = builder.trackCmt
+    val trackSrc = builder.trackSrc
+    val trackNumber = builder.trackNumber
+    val trackLink = builder.trackLink
+    val trackType = builder.trackType
 
     class Builder {
         var trackName: String? = null
@@ -30,59 +28,22 @@ class Track private constructor(builder: Builder) {
         var trackType: String? = null
             private set
 
-        fun setTrackName(trackName: String?): Builder {
-            this.trackName = trackName
-            return this
-        }
+        fun setTrackName(trackName: String?) = apply { this.trackName = trackName }
 
-        fun setTrackDesc(trackDesc: String?): Builder {
-            this.trackDesc = trackDesc
-            return this
-        }
+        fun setTrackDesc(trackDesc: String?) = apply { this.trackDesc = trackDesc }
 
-        fun setTrackSegments(trackSegments: List<TrackSegment>?): Builder {
-            this.trackSegments = trackSegments
-            return this
-        }
+        fun setTrackSegments(trackSegments: List<TrackSegment>?) = apply { this.trackSegments = trackSegments }
 
-        fun setTrackCmt(trackCmt: String?): Builder {
-            this.trackCmt = trackCmt
-            return this
-        }
+        fun setTrackCmt(trackCmt: String?) = apply { this.trackCmt = trackCmt }
 
-        fun setTrackSrc(trackSrc: String?): Builder {
-            this.trackSrc = trackSrc
-            return this
-        }
+        fun setTrackSrc(trackSrc: String?) = apply { this.trackSrc = trackSrc }
 
-        fun setTrackNumber(trackNumber: Int?): Builder {
-            this.trackNumber = trackNumber
-            return this
-        }
+        fun setTrackNumber(trackNumber: Int?) = apply { this.trackNumber = trackNumber }
 
-        fun setTrackLink(link: Link?): Builder {
-            trackLink = link
-            return this
-        }
+        fun setTrackLink(link: Link?) = apply { trackLink = link }
 
-        fun setTrackType(type: String?): Builder {
-            trackType = type
-            return this
-        }
+        fun setTrackType(type: String?) = apply { trackType = type }
 
-        fun build(): Track {
-            return Track(this)
-        }
-    }
-
-    init {
-        trackName = builder.trackName
-        trackDesc = builder.trackDesc
-        trackCmt = builder.trackCmt
-        trackSrc = builder.trackSrc
-        trackNumber = builder.trackNumber
-        trackSegments = Collections.unmodifiableList(ArrayList(builder.trackSegments))
-        trackLink = builder.trackLink
-        trackType = builder.trackType
+        fun build() = Track(this)
     }
 }

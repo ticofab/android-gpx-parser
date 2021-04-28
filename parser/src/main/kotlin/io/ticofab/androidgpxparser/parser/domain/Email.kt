@@ -1,8 +1,8 @@
 package io.ticofab.androidgpxparser.parser.domain
 
 class Email private constructor(builder: Builder) {
-    val id: String?
-    val domain: String?
+    val id = builder.id
+    val domain = builder.domain
 
     class Builder {
         var id: String? = null
@@ -10,23 +10,10 @@ class Email private constructor(builder: Builder) {
         var domain: String? = null
             private set
 
-        fun setId(id: String?): Builder {
-            this.id = id
-            return this
-        }
+        fun setId(id: String?) = apply { this.id = id }
 
-        fun setDomain(domain: String?): Builder {
-            this.domain = domain
-            return this
-        }
+        fun setDomain(domain: String?) = apply { this.domain = domain }
 
-        fun build(): Email {
-            return Email(this)
-        }
-    }
-
-    init {
-        id = builder.id
-        domain = builder.domain
+        fun build() = Email(this)
     }
 }
