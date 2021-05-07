@@ -7,9 +7,9 @@ A library to parse XML Gpx files, built for Android. The reference schema is the
 
 ## Projects using this library:
 
+* [TomTom AmiGO](https://play.google.com/store/apps/details?id=com.tomtom.speedcams.android.map)
 * [Maplocs Cycling Route Planner](https://play.google.com/store/apps/details?id=abhiank.maplocs)
 * [Boatspeed Sailing and Tracking](https://play.google.com/store/apps/details?id=de.herberlin.boatspeed&hl=de)
-* [TomTom AmiGO](https://play.google.com/store/apps/details?id=com.tomtom.speedcams.android.map)
 
 _To have your project listed here, send me an email or open a PR._
 
