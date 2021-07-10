@@ -1,5 +1,11 @@
 # Change Log
 
+## Version 2.0.1 *(Jul 10th 2021)*
+
+* Make the Joda library available to users without adding it explicitly (which fixes [#37](https://github.com/ticofab/android-gpx-parser/issues/37)) - thanks [Markus Deutsch](https://github.com/moopat)!
+* Remove the useless resource folder from the example app - thanks [Tom Sullivan](https://github.com/msbit)!
+* Updates the gradle plugin to 4.2.2
+
 ## Version 2.0.0 *(Apr 26th 2021)* 
 
 Breaking change! Triggered by Bintray sunsetting JCenter, I seized the opportunity to
