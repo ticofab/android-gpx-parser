@@ -29,7 +29,7 @@ android {
 dependencies {
     // JodaTime for Android
     // https://github.com/dlew/joda-time-android
-    implementation 'net.danlew:android.joda:2.10.9.1'
+    api 'net.danlew:android.joda:2.10.9.1'
 
     androidTestImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.annotation:annotation:1.1.0'
