@@ -1,8 +1,9 @@
 package io.ticofab.androidgpxparser;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -20,8 +21,7 @@ public class GPXParserSampleActivity extends AppCompatActivity {
 
     static final String TAG = GPXParserSampleActivity.class.getSimpleName();
 
-    // consider injection with, eg. Dagger2
-    GPXParser mParser = new GPXParser();
+    GPXParser mParser = new GPXParser(); // consider injection
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class GPXParserSampleActivity extends AppCompatActivity {
         Gpx parsedGpx = null;
         try {
             InputStream in = getAssets().open("test.gpx");
-            parsedGpx = mParser.parse(in);
+            parsedGpx = mParser.parse(in); // consider doing this on a background thread
         } catch (IOException | XmlPullParserException e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class GPXParserSampleActivity extends AppCompatActivity {
                     TrackSegment segment = segments.get(j);
                     Log.d(TAG, "  segment " + j + ":");
                     for (TrackPoint trackPoint : segment.getTrackPoints()) {
-                        Log.d(TAG, "    point: lat " + trackPoint.getLatitude() + ", lon " + trackPoint.getLongitude());
+                        Log.d(TAG, "    point: lat " + trackPoint.getLatitude() + ", lon " + trackPoint.getLongitude() + ", time " + trackPoint.getTime());
                     }
                 }
             }

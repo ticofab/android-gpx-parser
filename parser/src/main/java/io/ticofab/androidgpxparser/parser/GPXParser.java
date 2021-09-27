@@ -26,8 +26,6 @@ import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
 import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
 import io.ticofab.androidgpxparser.parser.domain.WayPoint;
-import io.ticofab.androidgpxparser.parser.task.FetchAndParseGPXTask;
-import io.ticofab.androidgpxparser.parser.task.GpxFetchedAndParsed;
 
 public class GPXParser {
 
@@ -70,10 +68,6 @@ public class GPXParser {
     static private final String TAG_DOMAIN = "domain";
 
     static private final String namespace = null;
-
-    public void parse(String gpxUrl, GpxFetchedAndParsed listener) {
-        new FetchAndParseGPXTask(gpxUrl, listener).execute();
-    }
 
     public Gpx parse(InputStream in) throws XmlPullParserException, IOException {
         try {

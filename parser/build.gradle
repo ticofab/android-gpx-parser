@@ -1,39 +1,22 @@
-apply plugin: 'com.android.library'
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'android-gpx-parser'
-
-    publishedGroupId = 'io.ticofab.androidgpxparser'
-    libraryName = 'AndroidGpxParser'
-    artifact = 'parser'
-
-    libraryDescription = 'A simple XML parser for GPX files, built for Android.'
-
-    siteUrl = 'https://github.com/ticofab/android-gpx-parser'
-    gitUrl = 'https://github.com/ticofab/android-gpx-parser.git'
-
-    libraryVersion = '1.6.0'
-
-    developerId = 'ticofab'
-    developerName = 'Fabio Tiriticco'
-    developerEmail = 'fabio.europe@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    useLibrary 'android.test.runner'
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion 16
+        targetSdkVersion 30
         versionCode 10
-        versionName "1.6.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName "2.0.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -46,15 +29,28 @@ android {
 dependencies {
     // JodaTime for Android
     // https://github.com/dlew/joda-time-android
-    implementation 'net.danlew:android.joda:2.10.2'
+    api 'net.danlew:android.joda:2.10.9.1'
 
-    androidTestImplementation 'junit:junit:4.13-beta-2'
-    androidTestImplementation 'com.android.support:support-annotations:28.0.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
 
-tasks.findByPath(":parser:javadoc").enabled = false
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.github.ticofab'
+                artifactId = 'android-gpx-parser'
+                version = '2.0.0'
+            }
+        }
+    }
+}
