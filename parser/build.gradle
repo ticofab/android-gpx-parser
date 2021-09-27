@@ -14,8 +14,6 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 31
-        versionCode 11
-        versionName "2.0.2"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
@@ -50,7 +48,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.ticofab'
                 artifactId = 'android-gpx-parser'
-                version = '2.0.0'
+                version = '2.0.2'
             }
         }
     }
