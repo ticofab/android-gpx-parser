@@ -39,8 +39,9 @@ allprojects {
 }
 ```
 
+Finally, in your dependencies list
+
 ```
-// finally, in your dependencies list in the module build.gradle
 dependencies {
     implementation 'com.github.ticofab:android-gpx-parser:2.0.1'
 }
@@ -76,8 +77,6 @@ if (parsedGpx == null) {
     // see included example app and tests
 }
 ```
-
-See the tests or the example app. 
 
 ## Contribute
 
