@@ -16,9 +16,21 @@ _To have your project listed here, send me an email or open a PR._
 
 ## Download
 
-Add the Jitpack repository to your root build file:
+Add the Jitpack repository to your root build file. The way you do this depends on the Gradle plugin you are using:
 
-```groovy
+```
+// for gradle plugin 7.0.0 or newer (default for new apps since Android Studio Artic Fox), in settings.gradle
+dependencyResolutionManagement {
+    ...
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```
+// for older versions, in the project-level build.gradle
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
@@ -26,7 +38,8 @@ allprojects {
 }
 ```
 
-```groovy
+```
+// finally, in your dependencies list in the module build.gradle
 dependencies {
     implementation 'com.github.ticofab:android-gpx-parser:2.0.1'
 }
