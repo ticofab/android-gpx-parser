@@ -19,7 +19,8 @@ _To have your project listed here, send me an email or open a PR._
 Add the Jitpack repository to your root build file. The way you do this depends on the Gradle plugin you are using:
 
 ```
-// for gradle plugin 7.0.0 or newer (default for new apps since Android Studio Artic Fox), in settings.gradle
+// for gradle plugin 7.0.0 or newer (default for new apps since Android Studio Artic Fox)
+// in settings.gradle
 dependencyResolutionManagement {
     ...
     repositories {
@@ -30,7 +31,7 @@ dependencyResolutionManagement {
 ```
 
 ```
-// for older versions, in the project-level build.gradle
+// for older versions, in project-level build.gradle
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
