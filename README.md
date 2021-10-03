@@ -53,15 +53,10 @@ dependencies {
 
 ## Usage
 
-Get a parser instance:
+In Java:
 
 ```java
 GPXParser mParser = new GPXParser(); // consider injection
-```
-
-Then, given an InputStream:
-
-```java
 Gpx parsedGpx = null;
 try {
     InputStream in = getAssets().open("test.gpx");
@@ -78,7 +73,7 @@ if (parsedGpx == null) {
 }
 ```
 
-In Kotlin
+In Kotlin:
 
 ```kotlin
 val parser = GPXParser() // consider injection
