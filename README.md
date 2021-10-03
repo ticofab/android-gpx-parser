@@ -78,6 +78,28 @@ if (parsedGpx == null) {
 }
 ```
 
+In Kotlin
+
+```kotlin
+val parser = GPXParser() // consider injection
+try {
+    val input: InputStream = getAssets().open("test.gpx")
+    val parsedGpx: Gpx? = parser.parse(input) // consider using a background thread
+    parsedGpx?.let {
+        // do something with the parsed track
+        // see included example app and tests
+    } ?: {
+        // error parsing track
+    }
+} catch (e: IOException) {
+    // do something with this exception
+    e.printStackTrace()
+} catch (e: XmlPullParserException) {
+    // do something with this exception
+    e.printStackTrace()
+}
+```
+
 ## Contribute
 
 Contributions are welcome! Please check the [issues](https://github.com/ticofab/android-gpx-parser/issues) and open a pull request when done: you will have made the world a better place.
