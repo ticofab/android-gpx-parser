@@ -56,11 +56,11 @@ dependencies {
 In Java:
 
 ```java
-GPXParser mParser = new GPXParser(); // consider injection
+GPXParser parser = new GPXParser(); // consider injection
 Gpx parsedGpx = null;
 try {
     InputStream in = getAssets().open("test.gpx");
-    parsedGpx = mParser.parse(in); // consider using a background thread
+    parsedGpx = parser.parse(in); // consider using a background thread
 } catch (IOException | XmlPullParserException e) {
     // do something with this exception
     e.printStackTrace();
