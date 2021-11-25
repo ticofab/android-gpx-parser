@@ -53,19 +53,14 @@ dependencies {
 
 ## Usage
 
-Get a parser instance:
+In Java:
 
 ```java
-GPXParser mParser = new GPXParser(); // consider injection
-```
-
-Then, given an InputStream:
-
-```java
+GPXParser parser = new GPXParser(); // consider injection
 Gpx parsedGpx = null;
 try {
     InputStream in = getAssets().open("test.gpx");
-    parsedGpx = mParser.parse(in); // consider using a background thread
+    parsedGpx = parser.parse(in); // consider using a background thread
 } catch (IOException | XmlPullParserException e) {
     // do something with this exception
     e.printStackTrace();
@@ -75,6 +70,28 @@ if (parsedGpx == null) {
 } else {
     // do something with the parsed track
     // see included example app and tests
+}
+```
+
+In Kotlin:
+
+```kotlin
+val parser = GPXParser() // consider injection
+try {
+    val input: InputStream = getAssets().open("test.gpx")
+    val parsedGpx: Gpx? = parser.parse(input) // consider using a background thread
+    parsedGpx?.let {
+        // do something with the parsed track
+        // see included example app and tests
+    } ?: {
+        // error parsing track
+    }
+} catch (e: IOException) {
+    // do something with this exception
+    e.printStackTrace()
+} catch (e: XmlPullParserException) {
+    // do something with this exception
+    e.printStackTrace()
 }
 ```
 
