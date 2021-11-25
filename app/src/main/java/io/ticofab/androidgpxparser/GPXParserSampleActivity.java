@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import io.ticofab.androidgpxparser.parser.GPXParser;
+import io.ticofab.androidgpxparser.parser.domain.Extensions;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
@@ -47,7 +48,14 @@ public class GPXParserSampleActivity extends AppCompatActivity {
                     TrackSegment segment = segments.get(j);
                     Log.d(TAG, "  segment " + j + ":");
                     for (TrackPoint trackPoint : segment.getTrackPoints()) {
-                        Log.d(TAG, "    point: lat " + trackPoint.getLatitude() + ", lon " + trackPoint.getLongitude() + ", time " + trackPoint.getTime());
+                        String msg = "    point: lat " + trackPoint.getLatitude() + ", lon " + trackPoint.getLongitude() + ", time " + trackPoint.getTime();
+                        Extensions ext = trackPoint.getExtensions();
+                        Double speed;
+                        if (ext != null) {
+                            speed = ext.getSpeed();
+                            msg = msg.concat(", speed " + speed);
+                        }
+                        Log.d(TAG, msg);
                     }
                 }
             }

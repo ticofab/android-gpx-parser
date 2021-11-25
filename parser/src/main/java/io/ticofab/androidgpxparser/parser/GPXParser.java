@@ -16,6 +16,7 @@ import io.ticofab.androidgpxparser.parser.domain.Author;
 import io.ticofab.androidgpxparser.parser.domain.Bounds;
 import io.ticofab.androidgpxparser.parser.domain.Copyright;
 import io.ticofab.androidgpxparser.parser.domain.Email;
+import io.ticofab.androidgpxparser.parser.domain.Extensions;
 import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Link;
 import io.ticofab.androidgpxparser.parser.domain.Metadata;
@@ -55,7 +56,6 @@ public class GPXParser {
     static private final String TAG_COPYRIGHT = "copyright";
     static private final String TAG_KEYWORDS = "keywords";
     static private final String TAG_BOUNDS = "bounds";
-    static private final String TAG_EXTENSIONS = "extensions";
     static private final String TAG_MIN_LAT = "minlat";
     static private final String TAG_MIN_LON = "minlon";
     static private final String TAG_MAX_LAT = "maxlat";
@@ -66,6 +66,10 @@ public class GPXParser {
     static private final String TAG_EMAIL = "email";
     static private final String TAG_ID = "id";
     static private final String TAG_DOMAIN = "domain";
+
+    // extensions-related tags
+    static private final String TAG_EXTENSIONS = "extensions";
+    static private final String TAG_SPEED = "speed";
 
     static private final String namespace = null;
 
@@ -316,6 +320,9 @@ public class GPXParser {
                 case TAG_TYPE:
                     builder.setType(readType(parser));
                     break;
+                case TAG_EXTENSIONS:
+                    builder.setExtensions(readExtensions(parser));
+                    break;
                 default:
                     skip(parser);
                     break;
@@ -504,6 +511,19 @@ public class GPXParser {
         return number;
     }
 
+    private Double readSpeed(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, namespace, TAG_SPEED);
+        double speed;
+        try {
+            speed = Double.parseDouble(readText(parser));
+        } catch (NumberFormatException e) {
+            // there was an issue parsing speed, default to 0.0
+            speed = 0.0;
+        }
+        parser.require(XmlPullParser.END_TAG, namespace, TAG_SPEED);
+        return speed;
+    }
+
     private Integer readYear(XmlPullParser parser) throws IOException, XmlPullParserException, NumberFormatException {
         parser.require(XmlPullParser.START_TAG, namespace, TAG_YEAR);
         String yearStr = readText(parser);
@@ -517,6 +537,28 @@ public class GPXParser {
         Integer year = Integer.valueOf(yearStr);
         parser.require(XmlPullParser.END_TAG, namespace, TAG_YEAR);
         return year;
+    }
+
+    private Extensions readExtensions(XmlPullParser parser) throws IOException, XmlPullParserException {
+        Extensions.Builder extensionsBuilder = new Extensions.Builder();
+
+        parser.require(XmlPullParser.START_TAG, namespace, TAG_EXTENSIONS);
+        while (loopMustContinue(parser.next())) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            switch (name) {
+                case TAG_SPEED:
+                    extensionsBuilder.setSpeed(readSpeed(parser));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+        parser.require(XmlPullParser.END_TAG, namespace, TAG_EXTENSIONS);
+        return extensionsBuilder.build();
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
