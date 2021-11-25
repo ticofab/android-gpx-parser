@@ -1,5 +1,11 @@
 # Change Log
 
+## Version 2.2.0 *(Nov 25th 2021)*
+
+* Adds parsing of the `speed` extension. Solves [#40](https://github.com/ticofab/android-gpx-parser/issues/40).
+* Updates to the 7.0.3 version of the gradle plugin.
+* Updates system dependencies (appcompat, annotations).
+
 ## Version 2.0.1 *(Jul 10th 2021)*
 
 * Make the Joda library available to users without adding it explicitly (which fixes [#37](https://github.com/ticofab/android-gpx-parser/issues/37)) - thanks [Markus Deutsch](https://github.com/moopat)!

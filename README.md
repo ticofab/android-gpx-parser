@@ -43,7 +43,7 @@ Finally, in your dependencies list
 
 ```
 dependencies {
-    implementation 'com.github.ticofab:android-gpx-parser:2.0.1'
+    implementation 'com.github.ticofab:android-gpx-parser:2.2.0'
 }
 ```
 
