@@ -2,7 +2,7 @@
 
 ## Version 2.3.0 *(Sep 2nd 2022)*
 
-* Adds `sym` parsing for waypoints. Solves [#48](https://github.com/ticofab/android-gpx-parser/issues/48) - thanks [gabrielezereik](https://github.com/gabrielezereik)
+* Adds `sym` and `cmt` parsing for waypoints. Solves [#48](https://github.com/ticofab/android-gpx-parser/issues/48) - thanks [gabrielezereik](https://github.com/gabrielezereik)!
 * Updates to the 7.2.2 version of the gradle plugin.
 * Updates system dependencies (appcompat).
 * Updated the Joda date library to the latest version (2.11.0.1).
