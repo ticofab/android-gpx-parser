@@ -17,6 +17,7 @@ import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
 import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
+import io.ticofab.androidgpxparser.parser.domain.WayPoint;
 
 public class GPXParserSampleActivity extends AppCompatActivity {
 
@@ -40,6 +41,10 @@ public class GPXParserSampleActivity extends AppCompatActivity {
         if (parsedGpx != null) {
             // log stuff
             List<Track> tracks = parsedGpx.getTracks();
+            List<WayPoint> wayPoints = parsedGpx.getWayPoints();
+            for (int k = 0; k < wayPoints.size(); k++) {
+                Log.d(TAG, "waypoint " + wayPoints.get(k).getName() + ": " + wayPoints.get(k).getSym());
+            }
             for (int i = 0; i < tracks.size(); i++) {
                 Track track = tracks.get(i);
                 Log.d(TAG, "track " + i + ":");
