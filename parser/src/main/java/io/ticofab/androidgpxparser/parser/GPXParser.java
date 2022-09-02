@@ -327,6 +327,9 @@ public class GPXParser {
                 case TAG_SYM:
                     builder.setSym(readSym(parser));
                     break;
+                case TAG_CMT:
+                    builder.setCmt(readCmt(parser));
+                    break;
                 default:
                     skip(parser);
                     break;
