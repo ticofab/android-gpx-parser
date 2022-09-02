@@ -46,7 +46,7 @@ Finally, in your dependencies list
 
 ```
 dependencies {
-    implementation 'com.github.ticofab:android-gpx-parser:2.2.0'
+    implementation 'com.github.ticofab:android-gpx-parser:2.3.0'
 }
 ```
 
@@ -104,7 +104,7 @@ Contributions are welcome! Please check the [issues](https://github.com/ticofab/
 
 ## License
 
-    Copyright 2015 - 2021 Fabio Tiriticco - Fabway
+    Copyright 2015 - 2022 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
