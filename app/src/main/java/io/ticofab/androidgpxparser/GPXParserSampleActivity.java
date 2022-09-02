@@ -41,10 +41,6 @@ public class GPXParserSampleActivity extends AppCompatActivity {
         if (parsedGpx != null) {
             // log stuff
             List<Track> tracks = parsedGpx.getTracks();
-            List<WayPoint> wayPoints = parsedGpx.getWayPoints();
-            for (int k = 0; k < wayPoints.size(); k++) {
-                Log.d(TAG, "waypoint " + wayPoints.get(k).getName() + ": " + wayPoints.get(k).getSym());
-            }
             for (int i = 0; i < tracks.size(); i++) {
                 Track track = tracks.get(i);
                 Log.d(TAG, "track " + i + ":");
