@@ -15,7 +15,7 @@ In addition, it parses the `speed` extension, when provided as a `double` number
 * [Routes - GPX/KML Navigation & GPS Tracker](https://play.google.com/store/apps/details?id=de.flosdorf.routenavigation&hl=de)
 * [GPS Video Logger](https://play.google.com/store/apps/details?id=app.gps_video_logger)
 
-_To have your project listed here, send me an email or open a PR._
+_To have your project listed here, please send me an email or open a PR._
 
 ## Download
 
@@ -104,7 +104,7 @@ Contributions are welcome! Please check the [issues](https://github.com/ticofab/
 
 ## License
 
-    Copyright 2015 - 2022 Fabio Tiriticco - Fabway
+    Copyright 2015 - 2023 Fabio Tiriticco - Fabway
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
