@@ -4,15 +4,13 @@
 # Android GPX Parser
 
 ## Table of Contents:
-1. [Description](#description)
-⋅⋅* What are XML GPX Files? 
-⋅⋅* Why is an Android GPX Parser necessary and relevant?
-2. File Structures
-3. Download
-4. Dependencies
-5. Usage
-6. Contribute
-7. License 
+1. [Description](#description) : What are XML GPX Files? Why is an Android GPX Parser necessary and relevant?
+2. [File Structures](#file)
+3. [Download](#download)
+4. [Dependencies](#dependencies)
+5. [Usage](#usage)
+6. [Contribute](#contribute)
+7. [License](#license) 
 
 
 ## Description
