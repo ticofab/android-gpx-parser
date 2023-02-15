@@ -23,8 +23,8 @@ Pull requests are welcome! Please check the [issues](https://github.com/ticofab/
 
 ## Module Structure
 
-1. App: Contains an example usage of the library.
-2. Parser: the library itself
+1. App: an example usage of the library.
+2. Parser: the library itself.
 
 ## Projects using this library:
 
