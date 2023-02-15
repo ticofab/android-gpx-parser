@@ -10,7 +10,7 @@
 4. [Download](#download)
 5. [Dependencies](#dependencies)
 6. [Usage](#usage)
-7[License](#license)
+7. [License](#license)
 
 ## Description
 A library to parse XML GPX files, built for Android. The reference schema is the [Topografix GPX 1.1](http://www.topografix.com/GPX/1/1/).  
