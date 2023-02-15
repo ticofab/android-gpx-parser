@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.1 *(Feb 15th 2023)*
+
+* Enhances README - thanks [neevasethi](https://github.com/neevasethi)!
+* Updates to Gradle 8.0 and Android Gradle Plugin 7.4.1
+* Updates system dependencies (appcompat, annotations, testing dependencies).
+* Updated the Joda date library to the latest version (2.12.1.1).
+
+
 ## 2.3.0 *(Sep 2nd 2022)*
 
 * Adds `sym` and `cmt` parsing for waypoints. Solves [#48](https://github.com/ticofab/android-gpx-parser/issues/48) - thanks [gabrielezereik](https://github.com/gabrielezereik)!
