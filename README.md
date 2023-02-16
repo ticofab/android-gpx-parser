@@ -13,10 +13,9 @@
 7. [License](#license)
 
 ## Description
-A library to parse XML GPX files, built for Android. The reference schema is the [Topografix GPX 1.1](http://www.topografix.com/GPX/1/1/).  
+A library to parse GPX files, built for Android. The reference schema is the [Topografix GPX 1.1](http://www.topografix.com/GPX/1/1/).  
 In addition, it parses the `speed` extension, when provided as a `double` number.
 
-What are XML Gpx Files? 
 GPX is an XML file format to represent GPS data: coordinates, routes, waypoints, and more. 
 
 Pull requests are welcome! Please check the [issues](https://github.com/ticofab/android-gpx-parser/issues) and open a pull request when done: you will have made the world a better place.
