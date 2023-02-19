@@ -54,7 +54,7 @@ dependencyResolutionManagement {
 
 For older verions of Gradle: 
 ```
-//in project-level build.gradle
+// in project-level build.gradle
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
