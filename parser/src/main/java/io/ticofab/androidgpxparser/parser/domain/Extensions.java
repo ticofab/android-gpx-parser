@@ -1,5 +1,8 @@
 package io.ticofab.androidgpxparser.parser.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * NOTE:
@@ -18,20 +21,32 @@ package io.ticofab.androidgpxparser.parser.domain;
 public class Extensions {
 
     private final Double mSpeed;
+    private final Map<String, Object> mOtherExtensions;
 
     private Extensions(Extensions.Builder builder) {
         mSpeed = builder.mSpeed;
+        mOtherExtensions = builder.mOtherExtensions;
     }
 
     public Double getSpeed() {
         return mSpeed;
     }
 
+    public Map<String, Object> getExtensions() {
+        return mOtherExtensions;
+    }
+
     public static class Builder {
         private Double mSpeed;
+        private Map<String, Object> mOtherExtensions = new HashMap<>();
 
         public Builder setSpeed(Double speed) {
             mSpeed = speed;
+            return this;
+        }
+
+        public Builder setExtensions(Map<String, Object> extensions) {
+            mOtherExtensions = extensions;
             return this;
         }
 

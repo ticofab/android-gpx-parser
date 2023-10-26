@@ -1,5 +1,6 @@
 package io.ticofab.androidgpxparser.parser;
 
+import android.util.Pair;
 import android.util.Xml;
 
 import org.joda.time.DateTime;
@@ -10,7 +11,9 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.ticofab.androidgpxparser.parser.domain.Author;
 import io.ticofab.androidgpxparser.parser.domain.Bounds;
@@ -223,21 +226,30 @@ public class GPXParser {
     // Processes summary tags in the feed.
     private TrackSegment readSegment(XmlPullParser parser) throws IOException, XmlPullParserException {
         List<TrackPoint> points = new ArrayList<>();
+        Map<String, Object> extensions = new HashMap<>();
         parser.require(XmlPullParser.START_TAG, namespace, TAG_SEGMENT);
         while (loopMustContinue(parser.next())) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
             String name = parser.getName();
-            if (TAG_TRACK_POINT.equals(name)) {
-                points.add(readTrackPoint(parser));
-            } else {
-                skip(parser);
+            switch (name) {
+                case TAG_TRACK_POINT:
+                    points.add(readTrackPoint(parser));
+                    break;
+                case TAG_EXTENSIONS:
+                    Pair<String, Object> extension = readExtension(parser);
+                    extensions.put(extension.first, extension.second);
+                    break;
+                default:
+                    skip(parser);
+                    break;
             }
         }
         parser.require(XmlPullParser.END_TAG, namespace, TAG_SEGMENT);
         return new TrackSegment.Builder()
                 .setTrackPoints(points)
+                .setExtensions(extensions)
                 .build();
     }
 
@@ -501,6 +513,7 @@ public class GPXParser {
         parser.require(XmlPullParser.END_TAG, namespace, TAG_TIME);
         return time;
     }
+
     private String readSym(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, namespace, TAG_SYM);
         String value = readText(parser);
@@ -536,7 +549,7 @@ public class GPXParser {
         parser.require(XmlPullParser.END_TAG, namespace, TAG_SPEED);
         return speed;
     }
-
+    
     private Integer readYear(XmlPullParser parser) throws IOException, XmlPullParserException, NumberFormatException {
         parser.require(XmlPullParser.START_TAG, namespace, TAG_YEAR);
         String yearStr = readText(parser);
@@ -555,23 +568,35 @@ public class GPXParser {
     private Extensions readExtensions(XmlPullParser parser) throws IOException, XmlPullParserException {
         Extensions.Builder extensionsBuilder = new Extensions.Builder();
 
+        Map<String, Object> otherExtensions = new HashMap<>();
         parser.require(XmlPullParser.START_TAG, namespace, TAG_EXTENSIONS);
         while (loopMustContinue(parser.next())) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
             String name = parser.getName();
-            switch (name) {
-                case TAG_SPEED:
-                    extensionsBuilder.setSpeed(readSpeed(parser));
-                    break;
-                default:
-                    skip(parser);
-                    break;
+            if (name.equals(TAG_SPEED)) {
+                extensionsBuilder.setSpeed(readSpeed(parser));
+            } else {
+                otherExtensions.put(name, readText(parser));
             }
         }
         parser.require(XmlPullParser.END_TAG, namespace, TAG_EXTENSIONS);
-        return extensionsBuilder.build();
+        return extensionsBuilder.setExtensions(otherExtensions).build();
+    }
+
+    private Pair<String, Object> readExtension(XmlPullParser parser) throws IOException, XmlPullParserException {
+        Pair<String, Object> value = null;
+        parser.require(XmlPullParser.START_TAG, namespace, TAG_EXTENSIONS);
+        while (loopMustContinue(parser.next())) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            value = new Pair<>(name, readText(parser));
+        }
+        parser.require(XmlPullParser.END_TAG, namespace, TAG_EXTENSIONS);
+        return value;
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
