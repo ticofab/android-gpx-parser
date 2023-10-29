@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
-    buildToolsVersion '33.0.0'
 
     defaultConfig {
+        compileSdk 33
         applicationId "io.ticofab.androidgpxparser"
         minSdkVersion 16
-        targetSdkVersion 33
-        versionCode 4
-        versionName "2.3.1"
+        targetSdk 33
+        versionCode 5
+        versionName "2.4.0"
     }
     buildTypes {
         release {
@@ -21,6 +20,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    namespace 'io.ticofab.androidgpxparser'
 }
 
 dependencies {
