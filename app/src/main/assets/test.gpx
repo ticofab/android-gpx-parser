@@ -3,10 +3,14 @@
    <ns2:metadata />
    <ns2:trk>
       <ns2:trkseg>
+      	 <ns2:extensions>
+       	    <segment-type>Custom segment extension</segment-type>
+       	 </ns2:extensions>
          <ns2:trkpt lat="52.2488" lon="5.126257">
             <ns2:time>2015-04-05T12:33:42Z</ns2:time>
             <ns2:extensions>
                <speed>0</speed>
+               <point-type>Custom extension</point-type>
             </ns2:extensions>
          </ns2:trkpt>
          <ns2:trkpt lat="52.2488" lon="5.126257">
