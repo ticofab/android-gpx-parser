@@ -3,6 +3,10 @@
 
 # Android GPX Parser
 
+# NOTICE: I am no longer maintaning this project.
+Almost ten years have passed since I started this, and I have no more time to stay up-to-date.
+I am looking for volounteers to take over this project.
+
 ## Table of Contents:
 1. [Description](#description)
 2. [Module Structures](#module-structure)
